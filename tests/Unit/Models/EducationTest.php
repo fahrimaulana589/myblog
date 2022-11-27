@@ -39,8 +39,8 @@ class EducationTest extends TestCase
     {
         $this->expectException(QueryException::class);
 
-        Education::factory()->create([
-            "date" => "smk hasry"
+        Education::factory(1)->create([
+            "date" => "1-2-2000"
         ]);
 
     }
