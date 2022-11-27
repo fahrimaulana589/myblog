@@ -10,8 +10,6 @@ use Tests\TestCase;
 
 class SkillTest extends TestCase
 {
-    use RefreshDatabase;
-
     /** @test  */
     public function skills_database_has_expected_column()
     {

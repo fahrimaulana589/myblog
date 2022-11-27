@@ -10,8 +10,6 @@ use Tests\TestCase;
 
 class SocialMediaTest extends TestCase
 {
-    use RefreshDatabase;
-
     /** @test  */
     public function socila_media_database_has_expected_column()
     {

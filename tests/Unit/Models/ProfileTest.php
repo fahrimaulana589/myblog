@@ -10,8 +10,6 @@ use Tests\TestCase;
 
 class ProfileTest extends TestCase
 {
-    use RefreshDatabase;
-
     /** @test  */
     public function profiles_database_has_expected_column()
     {
