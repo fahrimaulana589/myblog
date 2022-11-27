@@ -1,0 +1,76 @@
+fitur Api
+
+1. Auth
+    - akun
+        - name
+        - photo
+        - username
+        - email
+        - password
+    - login
+        - login with email and password
+    - logout
+    - change password
+    - forget password
+        - verifikasion use emial
+
+2. About me
+    - profile ru
+        - photo
+        - name
+        - summary
+        - slogan
+    - sosial media crud
+        - icon
+        - name
+        - url
+    - skill crud
+        - icon
+        - name
+    - education crud
+        - name
+        - summary
+        - date
+    - experience crud
+        - name
+        - summary
+        - date
+
+3. website
+    - service crud
+        - icon
+        - name
+        - summary
+    - my cv ru
+        - photo
+        - name
+        - summary
+        - file
+    - contact me ru
+        - name
+        - summary
+        - email
+        - whatsupp
+
+4. blog
+    - name
+    - image
+    - content
+    - date
+    - read many r
+        - name
+        - date
+    - comment
+        - use discuse
+    - category one crud
+    - tag many crud
+
+5. portofolio
+    - name
+    - image
+    - content
+    - read many r
+        - name
+        - date
+    - comment
+        - use discuse
