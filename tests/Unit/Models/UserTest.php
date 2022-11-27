@@ -50,7 +50,7 @@ class UserTest extends TestCase
     }
 
     /** @test */
-    public function users_database_email_column_is_photo()
+    public function users_database_photo_column_is_unique()
     {
         $this->expectException(QueryException::class);
 
