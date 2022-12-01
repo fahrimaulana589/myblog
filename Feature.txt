@@ -58,7 +58,6 @@ fitur Api
     - content
     - date
     - read many r
-        - name
         - date
     - comment
         - use discuse
@@ -70,7 +69,6 @@ fitur Api
     - image
     - content
     - read many r
-        - name
         - date
     - comment
         - use discuse
