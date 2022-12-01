@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Ramsey\Uuid\Uuid;
 
 class RegisteredUserController extends Controller
 {
@@ -43,6 +44,8 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            "username" => $request->name,
+            "photo" => "https://via.placeholder.com/480x640.png/001199?id=".fake()->uuid()
         ]);
 
         event(new Registered($user));
