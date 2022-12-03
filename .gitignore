@@ -5,11 +5,12 @@
 /storage/*.key
 /vendor
 .env
-.phpunit.result.xml
-phpunit.xml
 .env.backup
 .env.production
+.phpunit.result.xml
 .phpunit.result.cache
+phpunit.xml
+vite.config.js
 Homestead.json
 Homestead.yaml
 auth.json
