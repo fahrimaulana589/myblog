@@ -11,6 +11,10 @@ class Read extends Model
 
     protected $table = "reads";
 
+    protected $fillable = [
+        "count"
+    ];
+
     public function readable()
     {
         return $this->morphTo();

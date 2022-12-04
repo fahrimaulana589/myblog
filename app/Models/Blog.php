@@ -29,7 +29,7 @@ class Blog extends Model
         return $this->belongsToMany(Tag::class);
     }
 
-    public function reads(){
-        return $this->morphMany(Read::class,"readable");
+    public function read(){
+        return $this->morphOne(Read::class,"readable");
     }
 }

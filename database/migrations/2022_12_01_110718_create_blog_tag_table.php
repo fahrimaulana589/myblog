@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->foreignIdFor(Tag::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Blog::class)->constrained()->cascadeOnDelete();
 
-            $table->nullableMorphs("taggable");
+            $table->unique(['tag_id','blog_id']);
         });
     }
 

@@ -4,6 +4,7 @@ namespace Models;
 
 use App\Models\Blog;
 use App\Models\Category;
+use App\Models\Read;
 use App\Models\Tag;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
@@ -103,6 +104,24 @@ class BlogTest extends TestCase
     }
 
     /** @test */
+    public function blog_lain_dapat_memiliki_kategori_sama()
+    {
+        $category = Category::factory()->create();
+
+        $blog = Blog::factory()->create([
+            "category_id" => $category->id
+        ]);
+
+        $blog2 = Blog::factory()->create([
+            "category_id" => $category->id
+        ]);
+
+        $category = Category::find($category->id);
+
+        $this->assertTrue($category->blogs()->count() == 2);
+    }
+
+    /** @test */
     public function categori_tidak_bisa_dihapus_jika_blog_ada_yang_memiliki_idnya()
     {
         $this->expectException(QueryException::class);
@@ -132,6 +151,46 @@ class BlogTest extends TestCase
         $tags = Blog::find($blog->id)->tags();
 
         $this->assertTrue($tags->count() == 2);
+    }
+
+    /** @test */
+    public function blog_lain_dapat_memiliki_tag_yang_sama()
+    {
+        $tag = Tag::factory()->create()->first();
+
+        $category = Category::factory()->create();
+
+        $blog = Blog::factory()->create([
+            "category_id" => $category->id
+        ]);
+
+        $blog2 = Blog::factory()->create([
+            "category_id" => $category->id
+        ]);
+
+        $blog->tags()->attach([$tag->id]);
+        $blog2->tags()->attach([$tag->id]);
+
+        $tag = Tag::find($tag->id);
+
+        $this->assertTrue($tag->blogs()->count() == 2);
+    }
+
+    /** @test  */
+    public function blog_tidak_bisa_memiliki_tag_sama()
+    {
+        $this->expectException(QueryException::class);
+
+        $tag = Tag::factory()->create()->first();
+
+        $category = Category::factory()->create();
+
+        $blog = Blog::factory()->create([
+            "category_id" => $category->id
+        ]);
+
+        $blog->tags()->attach([$tag->id]);
+        $blog->tags()->attach([$tag->id]);
     }
 
     /** @test */
@@ -218,4 +277,51 @@ class BlogTest extends TestCase
         $this->assertTrue($pivot->count() == 0);
     }
 
+    /** @test */
+    public function blog_memiliki_satu_read_untuk_setiap_blog()
+    {
+        $category = Category::factory()->create();
+
+        $blog = Blog::factory()->create([
+            "category_id" => $category->id
+        ]);
+
+        $blog->read()->save(new Read());
+
+        $blog = Blog::find($blog->id);
+
+        $this->assertTrue($blog->read->count == 1);
+    }
+
+    /** @test  */
+    public function blog_tidak_bisa_memiliki_read_lebih_dari_satu()
+    {
+        $this->expectException(QueryException::class);
+
+        $category = Category::factory()->create();
+
+        $blog = Blog::factory()->create([
+            "category_id" => $category->id
+        ]);
+
+        $blog->read()->save(new Read());
+        $blog->read()->save(new Read());
+    }
+
+    /** @test  */
+    public function cread_akan_terhapus_jika_blog_dihapus()
+    {
+        $category = Category::factory()->create();
+
+        $blog = Blog::factory()->create([
+            "category_id" => $category->id
+        ]);
+
+        $blog->read()->save(new Read());
+
+        $blog = Blog::find($blog->id);
+        $blog->delete();
+
+        $this->assertDatabaseCount("reads",0);
+    }
 }
