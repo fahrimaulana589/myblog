@@ -12,7 +12,10 @@ class PortofolioFactory extends Factory
     public function definition(): array
     {
         return [
-
+            "name" => fake()->unique()->name,
+            "image" => fake()->unique()->imageUrl(),
+            "content" => fake()->text(),
+            "comment" => fake()->uuid(),
         ];
     }
 }
