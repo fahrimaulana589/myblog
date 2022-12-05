@@ -28,12 +28,16 @@ class BlogTest extends TestCase
     {
         $this->expectException(QueryException::class);
 
+        $category = Category::factory()->create();
+
         Blog::factory()->create([
-            "name" => "blog masak code"
+            "name" => "blog masak code",
+            "category_id" => $category->id
         ]);
 
         Blog::factory()->create([
-            "name" => "blog masak code"
+            "name" => "blog masak code",
+            "category_id" => $category->id
         ]);
     }
 
@@ -42,12 +46,16 @@ class BlogTest extends TestCase
     {
         $this->expectException(QueryException::class);
 
+        $category = Category::factory()->create();
+
         Blog::factory()->create([
-            "image" => "blog masak code"
+            "image" => "blog masak code",
+            "category_id" => $category->id
         ]);
 
         Blog::factory()->create([
-            "image" => "blog masak code"
+            "image" => "blog masak code",
+            "category_id" => $category->id
         ]);
     }
 
@@ -56,22 +64,26 @@ class BlogTest extends TestCase
     {
         $this->expectException(QueryException::class);
 
+        $category = Category::factory()->create();
+
         Blog::factory()->create([
-            "comment" => "blog masak code"
+            "comment" => "blog masak code",
+            "category_id" => $category->id
         ]);
 
         Blog::factory()->create([
-            "comment" => "blog masak code"
+            "comment" => "blog masak code",
+            "category_id" => $category->id
         ]);
     }
 
     /** @test */
     public function blog_punya_satu_categori()
     {
-        Category::factory(5)->create();
+        $category = Category::factory()->create();
 
         $blog = Blog::factory()->create([
-            "category_id" => 5
+            "category_id" => $category->id
         ]);
 
         $result = $blog->category->exists();
