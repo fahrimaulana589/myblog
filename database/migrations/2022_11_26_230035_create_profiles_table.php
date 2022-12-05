@@ -8,7 +8,7 @@ return new class extends Migration {
     public function up()
     {
         Schema::create('profiles', function (Blueprint $table) {
-            $table->id();
+            $table->enum("id",[1])->unique();
 
             $table->string("photo")->unique();
             $table->string("name");
