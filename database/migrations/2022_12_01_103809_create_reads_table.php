@@ -26,6 +26,10 @@ return new class extends Migration
             $table->unique(["readable_type","readable_id"]);
 
         });
+
+        Schema::table("blogs",function (Blueprint $table){
+            $table->foreignIdFor(Read::class)->nullable()->constrained()->restrictOnDelete();
+        });
     }
 
     /**
