@@ -39,6 +39,9 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::table("blogs",function (Blueprint $table){
+            $table->dropforeignIdFor(Read::class);
+        });
         Schema::dropIfExists('reads');
     }
 };
