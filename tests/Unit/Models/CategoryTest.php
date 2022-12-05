@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Models;
 
+use App\Models\Blog;
 use App\Models\Category;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Schema;
@@ -31,6 +32,20 @@ class CategoryTest extends TestCase
         Category::factory()->create([
            "name" => "baju"
         ]);
+    }
+
+    /** @test */
+    public function categori_tidak_bisa_dihapus_jika_blog_ada_yang_memiliki_idnya()
+    {
+        $this->expectException(QueryException::class);
+
+        $category = Category::factory()->create();
+
+        $blog = Blog::factory()->create([
+            "category_id" => $category->id
+        ]);
+
+        Category::find($category->id)->delete();
     }
 
 }
