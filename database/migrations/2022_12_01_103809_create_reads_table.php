@@ -20,8 +20,7 @@ return new class extends Migration
             $table->integer("count")->default(1);
             $table->timestamps();
 
-            $table->string("readable_type");
-            $table->integer("readable_id")->unsigned();
+            $table->morphs("readable");
 
             $table->foreign("readable_id")->references("id")->on("blogs")->cascadeOnDelete();
             $table->unique(["readable_type","readable_id"]);

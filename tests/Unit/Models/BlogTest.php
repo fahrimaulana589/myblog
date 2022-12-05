@@ -311,6 +311,7 @@ class BlogTest extends TestCase
     /** @test  */
     public function cread_akan_terhapus_jika_blog_dihapus()
     {
+
         $category = Category::factory()->create();
 
         $blog = Blog::factory()->create([
