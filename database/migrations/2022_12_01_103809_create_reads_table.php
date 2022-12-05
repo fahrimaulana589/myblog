@@ -22,7 +22,6 @@ return new class extends Migration
 
             $table->morphs("readable");
 
-            $table->foreign("readable_id")->references("id")->on("blogs")->cascadeOnDelete();
             $table->unique(["readable_type","readable_id"]);
 
         });
