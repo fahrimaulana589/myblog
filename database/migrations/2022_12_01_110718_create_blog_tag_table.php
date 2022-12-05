@@ -21,6 +21,6 @@ return new class extends Migration {
 
     public function down()
     {
-        Schema::dropIfExists('taggables');
+        Schema::dropIfExists('blog_tag');
     }
 };
