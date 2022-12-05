@@ -309,9 +309,8 @@ class BlogTest extends TestCase
     }
 
     /** @test  */
-    public function cread_akan_terhapus_jika_blog_dihapus()
+    public function read_akan_terhapus_jika_blog_dihapus()
     {
-
         $category = Category::factory()->create();
 
         $blog = Blog::factory()->create([
@@ -324,5 +323,27 @@ class BlogTest extends TestCase
         $blog->delete();
 
         $this->assertDatabaseCount("reads",0);
+    }
+
+    /** @test  */
+    public function read_tidak_bisa_dihapus_jika_masih_terhubung_keblog()
+    {
+        $this->expectException(QueryException::class);
+
+        $category = Category::factory()->create();
+
+        $blog = Blog::factory()->create([
+            "category_id" => $category->id
+        ]);
+
+        $blog->read()->save(new Read());
+
+        $read_id = Blog::find($blog->id)->read->id;
+        $blog->read_id = $read_id;
+        $blog->save();
+
+        $read = Read::find($read_id);
+
+        $read->delete();
     }
 }
