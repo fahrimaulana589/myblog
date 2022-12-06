@@ -2,6 +2,7 @@
 
 namespace App\Repositories\SosialMedia;
 
+use App\Models\SocialMedia;
 use LaravelEasyRepository\Implementations\Eloquent;
 use App\Models\SosialMedia;
 
@@ -14,7 +15,7 @@ class SosialMediaRepositoryImplement extends Eloquent implements SosialMediaRepo
     */
     protected $model;
 
-    public function __construct(SosialMedia $model)
+    public function __construct(SocialMedia $model)
     {
         $this->model = $model;
     }
