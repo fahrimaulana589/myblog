@@ -2,19 +2,21 @@
 
 namespace App\Services\Profile;
 
-use LaravelEasyRepository\Service;
 use App\Repositories\Profile\ProfileRepository;
+use Illuminate\Support\Facades\Storage;
+use LaravelEasyRepository\Service;
 
-class ProfileServiceImplement extends Service implements ProfileService{
-     /**
+class ProfileServiceImplement extends Service implements ProfileService
+{
+    /**
      * don't change $this->mainRepository variable name
      * because used in extends service class
      */
-     protected $mainRepository;
+    protected $mainRepository;
 
     public function __construct(ProfileRepository $mainRepository)
     {
-      $this->mainRepository = $mainRepository;
+        $this->mainRepository = $mainRepository;
     }
 
     public function view()
@@ -28,16 +30,32 @@ class ProfileServiceImplement extends Service implements ProfileService{
     {
         $this->isExist();
 
+        $path = $this->photo();
+
+        $data['photo'] = $path;
+
         return $this->mainRepository->change($data);
     }
 
-    public function isExist()
+    private function isExist()
     {
         $profile = $this->mainRepository->view();
 
-        if($profile == null){
+        if ($profile == null) {
             $this->mainRepository->faker();
         }
     }
 
+    private function photo()
+    {
+        $oldPath = $this->mainRepository->view()->photo;
+
+        if (request()->get('file') == null) {
+            return $oldPath;
+        }
+
+        Storage::delete($oldPath);
+
+        return request()->get('file')->store('files');
+    }
 }

@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Profile;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Carbon;
+use Illuminate\Http\UploadedFile;
 
 class ProfileFactory extends Factory
 {
@@ -13,7 +13,7 @@ class ProfileFactory extends Factory
     public function definition(): array
     {
         return [
-            'photo' => fake()->unique()->imageUrl(),
+            'photo' => UploadedFile::fake()->image('avatar.jpg')->store('files'),
             'name' => fake()->name(),
             'summary' => fake()->text(),
             'slogan' => fake()->word(),
