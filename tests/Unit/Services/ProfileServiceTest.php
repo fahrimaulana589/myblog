@@ -4,6 +4,8 @@ namespace Services;
 
 use App\Models\Profile;
 use App\Services\Profile\ProfileService;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class ProfileServiceTest extends TestCase
@@ -19,7 +21,9 @@ class ProfileServiceTest extends TestCase
 
         $profile = $profile_service->view();
 
-        $this->assertDatabaseHas("profiles", $profile->toArray());
+        Storage::disk()->assertExists($profile->photo);
+
+        $this->assertDatabaseHas('profiles', $profile->toArray());
     }
 
     /** @test  */
@@ -29,37 +33,60 @@ class ProfileServiceTest extends TestCase
 
         $profile = $profile_service->view();
 
-        $this->assertDatabaseHas("profiles", $profile->toArray());
+        Storage::disk()->assertExists($profile->photo);
+
+        $this->assertDatabaseHas('profiles', $profile->toArray());
     }
 
     /** @test  */
-    public function update_data_profile()
+    public function update_data_profile_dengan_gambar()
     {
-        Profile::factory()->create(["id" => $this->default_id]);
+        Profile::factory()->create(['id' => $this->default_id]);
 
         $profile_service = app()->make(ProfileService::class);
 
-        $profile_service->change([
-            'name' => "fahri"
+        $file = UploadedFile::fake()->image('avatar.jpg');
+
+        $request = \Illuminate\Http\Request::create('/', 'POST', [
+            'name' => 'fahri',
+        ], files: [
+            'file' => $file,
         ]);
 
-        $this->assertDatabaseHas("profiles", [
-            "name" => "fahri"
+        request()->request = $request;
+
+        $profile_service->change($request->all());
+
+        $path = $profile_service->view()->photo;
+
+        Storage::disk()->assertExists($path);
+
+        $this->assertDatabaseHas('profiles', [
+            'name' => 'fahri',
         ]);
     }
 
     /** @test  */
-    public function update_data_profile_kosong_maka_buat_profile_factory()
+    public function update_data_profile_dengan_gambar_tidak_ada()
     {
+        $profileOld = Profile::factory()->create(['id' => $this->default_id]);
+
         $profile_service = app()->make(ProfileService::class);
 
-        $profile_service->change([
-            'name' => "fahri"
+        $request = \Illuminate\Http\Request::create('/', 'POST', [
+            'name' => 'fahri',
         ]);
 
-        $profile = $profile_service->view();
+        request()->request = $request;
 
-        $this->assertDatabaseHas("profiles", $profile->toArray());
+        $profile_service->change($request->all());
+
+        $path = $profileOld->photo;
+
+        Storage::disk()->assertExists($path);
+
+        $this->assertDatabaseHas('profiles', [
+            'name' => 'fahri',
+        ]);
     }
-
 }
