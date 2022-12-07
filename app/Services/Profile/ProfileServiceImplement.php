@@ -52,6 +52,8 @@ class ProfileServiceImplement extends Service implements ProfileService
 
         if (request()->get('file') == null) {
             return $oldPath;
+        } elseif (! isset(request()->get('file')->name)) {
+            return $oldPath;
         }
 
         Storage::delete($oldPath);
