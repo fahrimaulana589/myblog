@@ -15,8 +15,8 @@ class TagTest extends TestCase
     /** @test */
     public function tags_table_has_expected_column()
     {
-        $result = Schema::hasColumns("tags",[
-           "name"
+        $result = Schema::hasColumns('tags', [
+            'name',
         ]);
 
         $this->assertTrue($result);
@@ -28,11 +28,11 @@ class TagTest extends TestCase
         $this->expectException(QueryException::class);
 
         Tag::create([
-            "name" => "hobi sehat"
+            'name' => 'hobi sehat',
         ]);
 
         Tag::create([
-            "name" => "hobi sehat"
+            'name' => 'hobi sehat',
         ]);
     }
 
@@ -44,7 +44,7 @@ class TagTest extends TestCase
         $category = Category::factory()->create();
 
         $blog = Blog::factory()->create([
-            "category_id" => $category->id
+            'category_id' => $category->id,
         ]);
 
         $tags = Tag::all()->map(function ($val) {
@@ -54,7 +54,7 @@ class TagTest extends TestCase
 
         Blog::find($blog->id)->delete();
 
-        $pivot = DB::table("blog_tag")->get();
+        $pivot = DB::table('blog_tag')->get();
 
         $this->assertTrue($pivot->count() == 0);
     }
@@ -67,7 +67,7 @@ class TagTest extends TestCase
         $category = Category::factory()->create();
 
         $blog = Blog::factory(5)->create([
-            "category_id" => $category->id
+            'category_id' => $category->id,
         ]);
 
         $blogs = Blog::all()->map(function ($val) {
@@ -77,9 +77,8 @@ class TagTest extends TestCase
 
         Tag::find($tag->id)->delete();
 
-        $pivot = DB::table("blog_tag")->get();
+        $pivot = DB::table('blog_tag')->get();
 
         $this->assertTrue($pivot->count() == 0);
     }
-
 }

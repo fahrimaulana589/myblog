@@ -9,9 +9,9 @@ class Experience extends Model
 {
     use  HasFactory;
 
-    protected $table = "experiences";
+    protected $table = 'experiences';
 
     protected $fillable = [
-        "name","summary","date"
+        'name', 'summary', 'date',
     ];
 }

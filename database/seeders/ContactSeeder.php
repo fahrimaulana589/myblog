@@ -10,8 +10,8 @@ class ContactSeeder extends Seeder
     public function run()
     {
         Contact::factory()->create([
-           "name" => "Akhmad Fahri Maulana",
-           "email" => "akhmadfahri589@gmail.com",
+            'name' => 'Akhmad Fahri Maulana',
+            'email' => 'akhmadfahri589@gmail.com',
         ]);
     }
 }

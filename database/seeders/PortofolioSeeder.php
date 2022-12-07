@@ -8,6 +8,5 @@ class PortofolioSeeder extends Seeder
 {
     public function run()
     {
-
     }
 }

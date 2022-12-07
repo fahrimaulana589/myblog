@@ -12,8 +12,8 @@ class SkillFactory extends Factory
     public function definition(): array
     {
         return [
-            "icon" => fake()->unique()->imageUrl(),
-            "name" => fake()->unique()->name
+            'icon' => fake()->unique()->imageUrl(),
+            'name' => fake()->unique()->name,
         ];
     }
 }

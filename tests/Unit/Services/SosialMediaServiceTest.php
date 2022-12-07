@@ -8,7 +8,6 @@ use App\Services\SosialMedia\SosialMediaService;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
@@ -61,13 +60,13 @@ class SosialMediaServiceTest extends TestCase
     {
         $sosialMediaService = app()->make(SosialMediaService::class);
 
-        $file = UploadedFile::fake()->image("avatar.jpg");
+        $file = UploadedFile::fake()->image('avatar.jpg');
 
-        $request = \Illuminate\Http\Request::create("/", "POST", [
-            "name" => "halo",
-            "url" => "test.com"
+        $request = \Illuminate\Http\Request::create('/', 'POST', [
+            'name' => 'halo',
+            'url' => 'test.com',
         ], files: [
-            "file" => $file
+            'file' => $file,
         ]);
 
         request()->request = $request;
@@ -76,7 +75,7 @@ class SosialMediaServiceTest extends TestCase
 
         Storage::disk()->assertExists($data->icon);
 
-        $this->assertDatabaseCount("social_medias", 1);
+        $this->assertDatabaseCount('social_medias', 1);
     }
 
     /** @test */
@@ -87,17 +86,16 @@ class SosialMediaServiceTest extends TestCase
         $sosialMediaRepository = app()->make(SosialMediaRepository::class);
 
         $sosialMediaRepository->create([
-            "name" => "tweter",
-            "icon" => "image1.jpg",
-            "url" => "test1.com"
+            'name' => 'tweter',
+            'icon' => 'image1.jpg',
+            'url' => 'test1.com',
         ]);
 
         $sosialMediaRepository->create([
-            "name" => "tweter",
-            "icon" => "image2.jpg",
-            "url" => "test2.com"
+            'name' => 'tweter',
+            'icon' => 'image2.jpg',
+            'url' => 'test2.com',
         ]);
-
     }
 
     /** @test */
@@ -108,17 +106,16 @@ class SosialMediaServiceTest extends TestCase
         $sosialMediaRepository = app()->make(SosialMediaRepository::class);
 
         $sosialMediaRepository->create([
-            "name" => "tweter1",
-            "icon" => "image1.jpg",
-            "url" => "test1.com"
+            'name' => 'tweter1',
+            'icon' => 'image1.jpg',
+            'url' => 'test1.com',
         ]);
 
         $sosialMediaRepository->create([
-            "name" => "tweter2",
-            "icon" => "image1.jpg",
-            "url" => "test2.com"
+            'name' => 'tweter2',
+            'icon' => 'image1.jpg',
+            'url' => 'test2.com',
         ]);
-
     }
 
     /** @test */
@@ -129,17 +126,16 @@ class SosialMediaServiceTest extends TestCase
         $sosialMediaRepository = app()->make(SosialMediaRepository::class);
 
         $sosialMediaRepository->create([
-            "name" => "tweter1",
-            "icon" => "image1.jpg",
-            "url" => "test1.com"
+            'name' => 'tweter1',
+            'icon' => 'image1.jpg',
+            'url' => 'test1.com',
         ]);
 
         $sosialMediaRepository->create([
-            "name" => "tweter2",
-            "icon" => "image2.jpg",
-            "url" => "test1.com"
+            'name' => 'tweter2',
+            'icon' => 'image2.jpg',
+            'url' => 'test1.com',
         ]);
-
     }
 
     /** @test */
@@ -150,15 +146,15 @@ class SosialMediaServiceTest extends TestCase
         $sosialMediaRepository = app()->make(SosialMediaRepository::class);
 
         $sosialMediaRepository->update($idSosialMedia, [
-            "name" => "test",
-            "icon" => "image.png",
-            "url" => "trwe.com"
+            'name' => 'test',
+            'icon' => 'image.png',
+            'url' => 'trwe.com',
         ]);
 
-        $this->assertDatabaseHas("social_medias", [
-            "name" => "test",
-            "icon" => "image.png",
-            "url" => "trwe.com"
+        $this->assertDatabaseHas('social_medias', [
+            'name' => 'test',
+            'icon' => 'image.png',
+            'url' => 'trwe.com',
         ]);
     }
 
@@ -170,11 +166,10 @@ class SosialMediaServiceTest extends TestCase
         $sosialMediaRepository = app()->make(SosialMediaRepository::class);
 
         $sosialMediaRepository->update(6, [
-            "name" => "test",
-            "icon" => "image.png",
-            "url" => "trwe.com"
+            'name' => 'test',
+            'icon' => 'image.png',
+            'url' => 'trwe.com',
         ]);
-
     }
 
     /** @test */
@@ -186,7 +181,7 @@ class SosialMediaServiceTest extends TestCase
 
         $sosialMediaRepository->delete($sosialMedai->id);
 
-        $this->assertDatabaseCount("social_medias", 0);
+        $this->assertDatabaseCount('social_medias', 0);
     }
 
     /** @test */
@@ -197,6 +192,5 @@ class SosialMediaServiceTest extends TestCase
         $sosialMediaRepository = app()->make(SosialMediaRepository::class);
 
         $sosialMediaRepository->delete(3);
-
     }
 }

@@ -9,9 +9,9 @@ class CurriculumVitae extends Model
 {
     use HasFactory;
 
-    protected $table = "curriculum_vitaes";
+    protected $table = 'curriculum_vitaes';
 
     protected $fillable = [
-        "name","summary","photo","file"
+        'name', 'summary', 'photo', 'file',
     ];
 }

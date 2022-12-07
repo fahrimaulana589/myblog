@@ -4,7 +4,6 @@ namespace Tests\Unit\Models;
 
 use App\Models\Profile;
 use Illuminate\Database\QueryException;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
 
@@ -13,8 +12,8 @@ class ProfileTest extends TestCase
     /** @test  */
     public function profiles_database_has_expected_column()
     {
-        $result = Schema::hasColumns("profiles",[
-            "name","summary","photo","slogan"
+        $result = Schema::hasColumns('profiles', [
+            'name', 'summary', 'photo', 'slogan',
         ]);
 
         $this->assertTrue($result);
@@ -26,13 +25,13 @@ class ProfileTest extends TestCase
         $this->expectException(QueryException::class);
 
         Profile::factory()->create([
-            "id" => 1,
-            "photo" => "default"
+            'id' => 1,
+            'photo' => 'default',
         ]);
 
         Profile::factory()->create([
-            "id" => 2,
-            "photo" => "s"
+            'id' => 2,
+            'photo' => 's',
         ]);
     }
 
@@ -42,12 +41,11 @@ class ProfileTest extends TestCase
         $this->expectException(QueryException::class);
 
         Profile::factory()->create([
-           "photo" => "default"
+            'photo' => 'default',
         ]);
 
         Profile::factory()->create([
-           "photo" => "default"
+            'photo' => 'default',
         ]);
     }
-
 }

@@ -4,16 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Testing\Fluent\Concerns\Has;
 
 class Skill extends Model
 {
     use HasFactory;
 
-    protected $table = "skills";
+    protected $table = 'skills';
 
     protected $fillable = [
-        "icon",
-        "name"
+        'icon',
+        'name',
     ];
 }

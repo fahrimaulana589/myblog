@@ -4,7 +4,6 @@ namespace Tests\Unit\Models;
 
 use App\Models\User;
 use Illuminate\Database\QueryException;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
 
@@ -14,7 +13,7 @@ class UserTest extends TestCase
     public function users_database_has_expected_columns()
     {
         $result = Schema::hasColumns('users', [
-            'id', 'name', 'username', 'photo', 'email', 'email_verified_at', 'password'
+            'id', 'name', 'username', 'photo', 'email', 'email_verified_at', 'password',
         ]);
         $this->assertTrue($result);
     }
@@ -25,11 +24,11 @@ class UserTest extends TestCase
         $this->expectException(QueryException::class);
 
         User::factory()->create([
-            "email" => "akhmadfahri589@gmail.com",
+            'email' => 'akhmadfahri589@gmail.com',
         ]);
 
         User::factory()->create([
-            "email" => "akhmadfahri589@gmail.com",
+            'email' => 'akhmadfahri589@gmail.com',
         ]);
 
         $this->assertTrue(true);
@@ -41,11 +40,11 @@ class UserTest extends TestCase
         $this->expectException(QueryException::class);
 
         User::factory()->create([
-            "username" => "akhmad589"
+            'username' => 'akhmad589',
         ]);
 
         User::factory()->create([
-            "username" => "akhmad589"
+            'username' => 'akhmad589',
         ]);
     }
 
@@ -55,11 +54,11 @@ class UserTest extends TestCase
         $this->expectException(QueryException::class);
 
         User::factory()->create([
-            "photo" => "default.png"
+            'photo' => 'default.png',
         ]);
 
         User::factory()->create([
-            "photo" => "default.png"
+            'photo' => 'default.png',
         ]);
     }
 }

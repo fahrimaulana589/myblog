@@ -9,12 +9,12 @@ class Profile extends Model
 {
     use HasFactory;
 
-    protected $table = "profiles";
+    protected $table = 'profiles';
 
     protected $fillable = [
-        "photo",
-        "name",
-        "summary",
-        "slogan"
+        'photo',
+        'name',
+        'summary',
+        'slogan',
     ];
 }

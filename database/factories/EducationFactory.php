@@ -12,9 +12,9 @@ class EducationFactory extends Factory
     public function definition(): array
     {
         return [
-            "name" => fake()->unique()->name(),
-            "summary" => fake()->text(200),
-            "date" => fake()->date()
+            'name' => fake()->unique()->name(),
+            'summary' => fake()->text(200),
+            'date' => fake()->date(),
         ];
     }
 }

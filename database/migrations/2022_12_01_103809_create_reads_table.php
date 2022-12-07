@@ -17,16 +17,15 @@ return new class extends Migration
         Schema::create('reads', function (Blueprint $table) {
             $table->id();
 
-            $table->integer("count")->default(1);
+            $table->integer('count')->default(1);
             $table->timestamps();
 
-            $table->morphs("readable");
+            $table->morphs('readable');
 
-            $table->unique(["readable_type","readable_id"]);
-
+            $table->unique(['readable_type', 'readable_id']);
         });
 
-        Schema::table("blogs",function (Blueprint $table){
+        Schema::table('blogs', function (Blueprint $table) {
             $table->foreignIdFor(Read::class)->nullable()->constrained()->restrictOnDelete();
         });
     }
@@ -38,7 +37,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table("blogs",function (Blueprint $table){
+        Schema::table('blogs', function (Blueprint $table) {
             $table->dropforeignIdFor(Read::class);
         });
         Schema::dropIfExists('reads');

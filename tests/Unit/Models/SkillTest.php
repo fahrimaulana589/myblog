@@ -4,7 +4,6 @@ namespace Tests\Unit\Models;
 
 use App\Models\Skill;
 use Illuminate\Database\QueryException;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
 
@@ -13,12 +12,11 @@ class SkillTest extends TestCase
     /** @test  */
     public function skills_database_has_expected_column()
     {
-        $result = Schema::hasColumns("skills",[
-            "icon","name"
+        $result = Schema::hasColumns('skills', [
+            'icon', 'name',
         ]);
 
         $this->assertTrue($result);
-
     }
 
     /** @test  */
@@ -27,11 +25,11 @@ class SkillTest extends TestCase
         $this->expectException(QueryException::class);
 
         Skill::factory()->create([
-            "icon" => "default.png"
+            'icon' => 'default.png',
         ]);
 
         Skill::factory()->create([
-            "icon" => "default.png"
+            'icon' => 'default.png',
         ]);
     }
 
@@ -41,11 +39,11 @@ class SkillTest extends TestCase
         $this->expectException(QueryException::class);
 
         Skill::factory()->create([
-            "name" => "javascript"
+            'name' => 'javascript',
         ]);
 
         Skill::factory()->create([
-            "name" => "javascript"
+            'name' => 'javascript',
         ]);
     }
 }

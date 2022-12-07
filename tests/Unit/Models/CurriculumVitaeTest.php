@@ -2,7 +2,6 @@
 
 namespace Tests\Unit\Models;
 
-
 use App\Models\CurriculumVitae;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Schema;
@@ -10,12 +9,11 @@ use Tests\TestCase;
 
 class CurriculumVitaeTest extends TestCase
 {
-
     /** @test  */
     public function curriculum_vitaes_table_has_expected_column()
     {
-        $result = Schema::hasColumns("curriculum_vitaes",[
-           "name","photo","summary","file"
+        $result = Schema::hasColumns('curriculum_vitaes', [
+            'name', 'photo', 'summary', 'file',
         ]);
 
         $this->assertTrue($result);
@@ -27,11 +25,11 @@ class CurriculumVitaeTest extends TestCase
         $this->expectException(QueryException::class);
 
         CurriculumVitae::factory()->create([
-            "name" => "fahri"
+            'name' => 'fahri',
         ]);
 
         CurriculumVitae::factory()->create([
-            "name" => "fahri"
+            'name' => 'fahri',
         ]);
     }
 
@@ -41,11 +39,11 @@ class CurriculumVitaeTest extends TestCase
         $this->expectException(QueryException::class);
 
         CurriculumVitae::factory()->create([
-            "photo" => "default.png"
+            'photo' => 'default.png',
         ]);
 
         CurriculumVitae::factory()->create([
-            "photo" => "default.png"
+            'photo' => 'default.png',
         ]);
     }
 
@@ -55,11 +53,11 @@ class CurriculumVitaeTest extends TestCase
         $this->expectException(QueryException::class);
 
         CurriculumVitae::factory()->create([
-            "file" => "default.png"
+            'file' => 'default.png',
         ]);
 
         CurriculumVitae::factory()->create([
-            "file" => "default.png"
+            'file' => 'default.png',
         ]);
     }
 }

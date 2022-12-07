@@ -1,6 +1,6 @@
 <?php
 
-namespace Models;
+namespace Tests\Unit\Models;
 
 use App\Models\Blog;
 use App\Models\Category;
@@ -14,8 +14,8 @@ class ReadTest extends TestCase
     /** @test  */
     public function read_memiliki_kolum_yang_disetujui()
     {
-        $response = \Schema::hasColumns("reads",[
-            "count"
+        $response = \Schema::hasColumns('reads', [
+            'count',
         ]);
 
         $this->assertTrue($response);
@@ -27,7 +27,7 @@ class ReadTest extends TestCase
         $category = Category::factory()->create();
 
         $blog = Blog::factory()->create([
-            "category_id" => $category->id
+            'category_id' => $category->id,
         ]);
 
         $blog->read()->save(new Read());
@@ -35,7 +35,7 @@ class ReadTest extends TestCase
         $blog = Blog::find($blog->id);
         $blog->delete();
 
-        $this->assertDatabaseCount("reads",0);
+        $this->assertDatabaseCount('reads', 0);
     }
 
     /** @test  */
@@ -48,7 +48,7 @@ class ReadTest extends TestCase
         $portofolio = Portofolio::find($portofolio->id);
         $portofolio->delete();
 
-        $this->assertDatabaseCount("reads",0);
+        $this->assertDatabaseCount('reads', 0);
     }
 
     /** @test  */
@@ -59,7 +59,7 @@ class ReadTest extends TestCase
         $category = Category::factory()->create();
 
         $blog = Blog::factory()->create([
-            "category_id" => $category->id
+            'category_id' => $category->id,
         ]);
 
         $blog->read()->save(new Read());

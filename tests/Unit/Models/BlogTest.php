@@ -1,6 +1,6 @@
 <?php
 
-namespace Models;
+namespace Tests\Unit\Models;
 
 use App\Models\Blog;
 use App\Models\Category;
@@ -16,8 +16,8 @@ class BlogTest extends TestCase
     /** @test */
     public function blogs_table_has_expected_column()
     {
-        $result = Schema::hasColumns("blogs", [
-            "name", "image", "date", "content", "comment"
+        $result = Schema::hasColumns('blogs', [
+            'name', 'image', 'date', 'content', 'comment',
         ]);
 
         $this->assertTrue($result);
@@ -31,13 +31,13 @@ class BlogTest extends TestCase
         $category = Category::factory()->create();
 
         Blog::factory()->create([
-            "name" => "blog masak code",
-            "category_id" => $category->id
+            'name' => 'blog masak code',
+            'category_id' => $category->id,
         ]);
 
         Blog::factory()->create([
-            "name" => "blog masak code",
-            "category_id" => $category->id
+            'name' => 'blog masak code',
+            'category_id' => $category->id,
         ]);
     }
 
@@ -49,13 +49,13 @@ class BlogTest extends TestCase
         $category = Category::factory()->create();
 
         Blog::factory()->create([
-            "image" => "blog masak code",
-            "category_id" => $category->id
+            'image' => 'blog masak code',
+            'category_id' => $category->id,
         ]);
 
         Blog::factory()->create([
-            "image" => "blog masak code",
-            "category_id" => $category->id
+            'image' => 'blog masak code',
+            'category_id' => $category->id,
         ]);
     }
 
@@ -67,13 +67,13 @@ class BlogTest extends TestCase
         $category = Category::factory()->create();
 
         Blog::factory()->create([
-            "comment" => "blog masak code",
-            "category_id" => $category->id
+            'comment' => 'blog masak code',
+            'category_id' => $category->id,
         ]);
 
         Blog::factory()->create([
-            "comment" => "blog masak code",
-            "category_id" => $category->id
+            'comment' => 'blog masak code',
+            'category_id' => $category->id,
         ]);
     }
 
@@ -83,7 +83,7 @@ class BlogTest extends TestCase
         $category = Category::factory()->create();
 
         $blog = Blog::factory()->create([
-            "category_id" => $category->id
+            'category_id' => $category->id,
         ]);
 
         $result = $blog->category->exists();
@@ -97,10 +97,10 @@ class BlogTest extends TestCase
         $category = Category::factory(5)->create()->first();
 
         $blog = Blog::factory()->create([
-            "category_id" => $category->id
+            'category_id' => $category->id,
         ]);
 
-        $this->assertDatabaseHas("blogs", $blog->toArray());
+        $this->assertDatabaseHas('blogs', $blog->toArray());
     }
 
     /** @test */
@@ -111,7 +111,7 @@ class BlogTest extends TestCase
         Category::factory(5)->create();
 
         $blog = Blog::factory()->create([
-            "category_id" => 6
+            'category_id' => 6,
         ]);
     }
 
@@ -121,11 +121,11 @@ class BlogTest extends TestCase
         $category = Category::factory()->create();
 
         $blog = Blog::factory()->create([
-            "category_id" => $category->id
+            'category_id' => $category->id,
         ]);
 
         $blog2 = Blog::factory()->create([
-            "category_id" => $category->id
+            'category_id' => $category->id,
         ]);
 
         $category = Category::find($category->id);
@@ -141,7 +141,7 @@ class BlogTest extends TestCase
         Category::factory(5)->create();
 
         $blog = Blog::factory()->create([
-            "category_id" => 5
+            'category_id' => 5,
         ]);
 
         Category::find(5)->delete();
@@ -155,7 +155,7 @@ class BlogTest extends TestCase
         $category = Category::factory()->create();
 
         $blog = Blog::factory()->create([
-            "category_id" => $category->id
+            'category_id' => $category->id,
         ]);
 
         $blog->tags()->attach([2, 4]);
@@ -173,11 +173,11 @@ class BlogTest extends TestCase
         $category = Category::factory()->create();
 
         $blog = Blog::factory()->create([
-            "category_id" => $category->id
+            'category_id' => $category->id,
         ]);
 
         $blog2 = Blog::factory()->create([
-            "category_id" => $category->id
+            'category_id' => $category->id,
         ]);
 
         $blog->tags()->attach([$tag->id]);
@@ -198,7 +198,7 @@ class BlogTest extends TestCase
         $category = Category::factory()->create();
 
         $blog = Blog::factory()->create([
-            "category_id" => $category->id
+            'category_id' => $category->id,
         ]);
 
         $blog->tags()->attach([$tag->id]);
@@ -213,7 +213,7 @@ class BlogTest extends TestCase
         $category = Category::factory()->create();
 
         $blog = Blog::factory()->create([
-            "category_id" => $category->id
+            'category_id' => $category->id,
         ]);
 
         $tags = Tag::all()->map(function ($val) {
@@ -237,7 +237,7 @@ class BlogTest extends TestCase
         $category = Category::factory()->create();
 
         $blog = Blog::factory()->create([
-            "category_id" => $category->id
+            'category_id' => $category->id,
         ]);
 
         $blog->tags()->attach([2, 9]);
@@ -251,7 +251,7 @@ class BlogTest extends TestCase
         $category = Category::factory()->create();
 
         $blog = Blog::factory()->create([
-            "category_id" => $category->id
+            'category_id' => $category->id,
         ]);
 
         $tags = Tag::all()->map(function ($val) {
@@ -261,7 +261,7 @@ class BlogTest extends TestCase
 
         Blog::find($blog->id)->delete();
 
-        $pivot = DB::table("blog_tag")->get();
+        $pivot = DB::table('blog_tag')->get();
 
         $this->assertTrue($pivot->count() == 0);
     }
@@ -274,7 +274,7 @@ class BlogTest extends TestCase
         $category = Category::factory()->create();
 
         $blog = Blog::factory(5)->create([
-            "category_id" => $category->id
+            'category_id' => $category->id,
         ]);
 
         $blogs = Blog::all()->map(function ($val) {
@@ -284,7 +284,7 @@ class BlogTest extends TestCase
 
         Tag::find($tag->id)->delete();
 
-        $pivot = DB::table("blog_tag")->get();
+        $pivot = DB::table('blog_tag')->get();
 
         $this->assertTrue($pivot->count() == 0);
     }
@@ -295,7 +295,7 @@ class BlogTest extends TestCase
         $category = Category::factory()->create();
 
         $blog = Blog::factory()->create([
-            "category_id" => $category->id
+            'category_id' => $category->id,
         ]);
 
         $blog->read()->save(new Read());
@@ -313,7 +313,7 @@ class BlogTest extends TestCase
         $category = Category::factory()->create();
 
         $blog = Blog::factory()->create([
-            "category_id" => $category->id
+            'category_id' => $category->id,
         ]);
 
         $blog->read()->save(new Read());
@@ -326,7 +326,7 @@ class BlogTest extends TestCase
         $category = Category::factory()->create();
 
         $blog = Blog::factory()->create([
-            "category_id" => $category->id
+            'category_id' => $category->id,
         ]);
 
         $blog->read()->save(new Read());
@@ -334,7 +334,7 @@ class BlogTest extends TestCase
         $blog = Blog::find($blog->id);
         $blog->delete();
 
-        $this->assertDatabaseCount("reads",0);
+        $this->assertDatabaseCount('reads', 0);
     }
 
     /** @test  */
@@ -345,7 +345,7 @@ class BlogTest extends TestCase
         $category = Category::factory()->create();
 
         $blog = Blog::factory()->create([
-            "category_id" => $category->id
+            'category_id' => $category->id,
         ]);
 
         $blog->read()->save(new Read());

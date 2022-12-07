@@ -4,16 +4,17 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     public function up()
     {
         Schema::create('profiles', function (Blueprint $table) {
-            $table->enum("id",[1])->unique();
+            $table->enum('id', [1])->unique();
 
-            $table->string("photo")->unique();
-            $table->string("name");
-            $table->text("summary");
-            $table->text("slogan");
+            $table->string('photo')->unique();
+            $table->string('name');
+            $table->text('summary');
+            $table->text('slogan');
 
             $table->timestamps();
         });

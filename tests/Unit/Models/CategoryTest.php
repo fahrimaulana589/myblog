@@ -13,8 +13,8 @@ class CategoryTest extends TestCase
     /** @test  */
     public function categories_table_has_expected_colum()
     {
-        $result = Schema::hasColumns("categories",[
-            "name"
+        $result = Schema::hasColumns('categories', [
+            'name',
         ]);
 
         $this->assertTrue($result);
@@ -26,11 +26,11 @@ class CategoryTest extends TestCase
         $this->expectException(QueryException::class);
 
         Category::factory()->create([
-           "name" => "baju"
+            'name' => 'baju',
         ]);
 
         Category::factory()->create([
-           "name" => "baju"
+            'name' => 'baju',
         ]);
     }
 
@@ -42,10 +42,9 @@ class CategoryTest extends TestCase
         $category = Category::factory()->create();
 
         $blog = Blog::factory()->create([
-            "category_id" => $category->id
+            'category_id' => $category->id,
         ]);
 
         Category::find($category->id)->delete();
     }
-
 }

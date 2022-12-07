@@ -17,7 +17,7 @@ class ReadFactory extends Factory
     public function definition()
     {
         return [
-            "count" => 1
+            'count' => 1,
         ];
     }
 }

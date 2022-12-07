@@ -12,7 +12,7 @@ class TagFactory extends Factory
     public function definition()
     {
         return [
-            "name" => fake()->unique()->text(6)
+            'name' => fake()->unique()->text(6),
         ];
     }
 }

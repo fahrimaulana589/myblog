@@ -12,8 +12,8 @@ class ServiceTest extends TestCase
     /** @test  */
     public function services_table_has_expected_column()
     {
-        $result = Schema::hasColumns("services",[
-           "name","icon","summary"
+        $result = Schema::hasColumns('services', [
+            'name', 'icon', 'summary',
         ]);
 
         $this->assertTrue($result);
@@ -25,11 +25,11 @@ class ServiceTest extends TestCase
         $this->expectException(QueryException::class);
 
         Service::factory()->create([
-            "name" => "perbaikan web"
+            'name' => 'perbaikan web',
         ]);
 
         Service::factory()->create([
-            "name" => "perbaikan web"
+            'name' => 'perbaikan web',
         ]);
     }
 
@@ -39,11 +39,11 @@ class ServiceTest extends TestCase
         $this->expectException(QueryException::class);
 
         Service::factory()->create([
-            "icon" => "default.png"
+            'icon' => 'default.png',
         ]);
 
         Service::factory()->create([
-            "icon" => "default.png"
+            'icon' => 'default.png',
         ]);
     }
 }

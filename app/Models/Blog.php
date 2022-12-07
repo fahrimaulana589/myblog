@@ -9,14 +9,14 @@ class Blog extends Model
 {
     use HasFactory;
 
-    protected $table = "blogs";
+    protected $table = 'blogs';
 
     protected $fillable = [
-        "name",
-        "image",
-        "content",
-        "date",
-        "comment"
+        'name',
+        'image',
+        'content',
+        'date',
+        'comment',
     ];
 
     public function category()
@@ -29,7 +29,8 @@ class Blog extends Model
         return $this->belongsToMany(Tag::class);
     }
 
-    public function read(){
-        return $this->morphOne(Read::class,"readable");
+    public function read()
+    {
+        return $this->morphOne(Read::class, 'readable');
     }
 }

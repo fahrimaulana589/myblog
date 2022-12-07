@@ -2,8 +2,6 @@
 
 namespace Tests\Unit\Models;
 
-use App\Models\Blog;
-use App\Models\Category;
 use App\Models\Portofolio;
 use App\Models\Read;
 use Illuminate\Database\QueryException;
@@ -12,16 +10,14 @@ use Tests\TestCase;
 
 class PortofolioTest extends TestCase
 {
-
     /** @test  */
     public function portofolio_memiliki_colom_yang_disetujui()
     {
-        $result = Schema::hasColumns("blogs", [
-            "name", "image", "content", "comment"
+        $result = Schema::hasColumns('blogs', [
+            'name', 'image', 'content', 'comment',
         ]);
 
         $this->assertTrue($result);
-
     }
 
     /** @test */
@@ -30,11 +26,11 @@ class PortofolioTest extends TestCase
         $this->expectException(QueryException::class);
 
         Portofolio::factory()->create([
-            "name" => "blog masak code",
+            'name' => 'blog masak code',
         ]);
 
         Portofolio::factory()->create([
-            "name" => "blog masak code",
+            'name' => 'blog masak code',
         ]);
     }
 
@@ -44,11 +40,11 @@ class PortofolioTest extends TestCase
         $this->expectException(QueryException::class);
 
         Portofolio::factory()->create([
-            "image" => "blog masak code",
+            'image' => 'blog masak code',
         ]);
 
         Portofolio::factory()->create([
-            "image" => "blog masak code",
+            'image' => 'blog masak code',
         ]);
     }
 
@@ -58,18 +54,17 @@ class PortofolioTest extends TestCase
         $this->expectException(QueryException::class);
 
         Portofolio::factory()->create([
-            "comment" => "blog masak code",
+            'comment' => 'blog masak code',
         ]);
 
         Portofolio::factory()->create([
-            "comment" => "blog masak code",
+            'comment' => 'blog masak code',
         ]);
     }
 
     /** @test */
     public function portofolio_memiliki_satu_read_untuk_setiap_portofolio()
     {
-
         $portofolio = Portofolio::factory()->create();
 
         $portofolio->read()->save(new Read());
@@ -88,7 +83,6 @@ class PortofolioTest extends TestCase
 
         $portofolio->read()->save(new Read());
         $portofolio->read()->save(new Read());
-
     }
 
     /** @test  */
@@ -101,7 +95,7 @@ class PortofolioTest extends TestCase
         $portofolio = Portofolio::find($portofolio->id);
         $portofolio->delete();
 
-        $this->assertDatabaseCount("reads",0);
+        $this->assertDatabaseCount('reads', 0);
     }
 
     /** @test  */

@@ -17,11 +17,11 @@ return new class extends Migration
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
 
-            $table->string("name")->unique();
-            $table->string("image")->unique();
-            $table->date("date");
-            $table->text("content");
-            $table->string("comment")->unique();
+            $table->string('name')->unique();
+            $table->string('image')->unique();
+            $table->date('date');
+            $table->text('content');
+            $table->string('comment')->unique();
 
             $table->timestamps();
 

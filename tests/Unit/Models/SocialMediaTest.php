@@ -4,7 +4,6 @@ namespace Tests\Unit\Models;
 
 use App\Models\SocialMedia;
 use Illuminate\Database\QueryException;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
 
@@ -13,9 +12,8 @@ class SocialMediaTest extends TestCase
     /** @test  */
     public function socila_media_database_has_expected_column()
     {
-
-        $result = Schema::hasColumns("social_medias",[
-            "name","icon","url"
+        $result = Schema::hasColumns('social_medias', [
+            'name', 'icon', 'url',
         ]);
 
         $this->assertTrue($result);
@@ -27,11 +25,11 @@ class SocialMediaTest extends TestCase
         $this->expectException(QueryException::class);
 
         SocialMedia::factory()->create([
-           "name" => "facebook"
+            'name' => 'facebook',
         ]);
 
         SocialMedia::factory()->create([
-            "name" => "facebook"
+            'name' => 'facebook',
         ]);
     }
 
@@ -41,11 +39,11 @@ class SocialMediaTest extends TestCase
         $this->expectException(QueryException::class);
 
         SocialMedia::factory()->create([
-            "icon" => "default.png"
+            'icon' => 'default.png',
         ]);
 
         SocialMedia::factory()->create([
-            "icon" => "default.png"
+            'icon' => 'default.png',
         ]);
     }
 
@@ -55,12 +53,11 @@ class SocialMediaTest extends TestCase
         $this->expectException(QueryException::class);
 
         SocialMedia::factory()->create([
-            "url" => "default.png"
+            'url' => 'default.png',
         ]);
 
         SocialMedia::factory()->create([
-            "url" => "default.png"
+            'url' => 'default.png',
         ]);
     }
-
 }

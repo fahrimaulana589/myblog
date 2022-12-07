@@ -9,12 +9,11 @@ use Tests\TestCase;
 
 class ExperienceTest extends TestCase
 {
-
     /** @test */
     public function experience_database_has_expected_collumn()
     {
-        $result = Schema::hasColumns("experiences", [
-            "name", "summary", "date"
+        $result = Schema::hasColumns('experiences', [
+            'name', 'summary', 'date',
         ]);
 
         $this->assertTrue($result);
@@ -26,11 +25,11 @@ class ExperienceTest extends TestCase
         $this->expectException(QueryException::class);
 
         Experience::factory()->create([
-            "name" => "freelance"
+            'name' => 'freelance',
         ]);
 
         Experience::factory()->create([
-            "name" => "freelance"
+            'name' => 'freelance',
         ]);
     }
 
@@ -40,8 +39,7 @@ class ExperienceTest extends TestCase
         $this->expectException(QueryException::class);
 
         Experience::factory()->create([
-            "date" => "freelance s"
+            'date' => 'freelance s',
         ]);
-
     }
 }

@@ -9,10 +9,10 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $table = "categories";
+    protected $table = 'categories';
 
     protected $fillable = [
-        "name"
+        'name',
     ];
 
     public function blogs()

@@ -10,9 +10,9 @@ class ProfileSeeder extends Seeder
     public function run()
     {
         Profile::factory()->create([
-            "name" => "Akhmad Fahri Maulana",
-            "summary" => "Hai Selamat Datang Di Blog saya",
-            "slogan" => "Tak kenal maka tak sayang"
+            'name' => 'Akhmad Fahri Maulana',
+            'summary' => 'Hai Selamat Datang Di Blog saya',
+            'slogan' => 'Tak kenal maka tak sayang',
         ]);
     }
 }
