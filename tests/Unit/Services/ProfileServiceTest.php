@@ -89,4 +89,29 @@ class ProfileServiceTest extends TestCase
             'name' => 'fahri',
         ]);
     }
+
+    /** @test  */
+    public function update_data_profile_dengan_gambar_yang_bernilai_bukan_file()
+    {
+        $profileOld = Profile::factory()->create(['id' => $this->default_id]);
+
+        $profile_service = app()->make(ProfileService::class);
+
+        $request = \Illuminate\Http\Request::create('/', 'POST', [
+            'name' => 'fahri',
+            'file' => 'as',
+        ]);
+
+        request()->request = $request;
+
+        $profile_service->change($request->all());
+
+        $path = $profileOld->photo;
+
+        Storage::disk()->assertExists($path);
+
+        $this->assertDatabaseHas('profiles', [
+            'name' => 'fahri',
+        ]);
+    }
 }
