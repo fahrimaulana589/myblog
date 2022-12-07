@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\SocialMedia;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Http\UploadedFile;
 
 class SocialMediaFactory extends Factory
 {
@@ -13,7 +14,7 @@ class SocialMediaFactory extends Factory
     {
         return [
             'name' => fake()->unique()->name(),
-            'icon' => fake()->unique()->imageUrl(),
+            'icon' => UploadedFile::fake()->image('avatar.jpg')->store('files'),
             'url' => fake()->unique()->name(),
         ];
     }
