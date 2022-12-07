@@ -75,6 +75,55 @@ class SosialMediaServiceTest extends TestCase
 
         Storage::disk()->assertExists($data->icon);
 
+        $files = count(Storage::allFiles('files'));
+        $this->assertTrue($files == 1);
+
+
+        $this->assertDatabaseCount('social_medias', 1);
+    }
+
+    /** @test */
+    public function buat_data_sosial_media_tanpa_gambar()
+    {
+        $sosialMediaService = app()->make(SosialMediaService::class);
+
+        $request = \Illuminate\Http\Request::create('/', 'POST', [
+            'name' => 'halo',
+            'url' => 'test.com',
+        ]);
+
+        request()->request = $request;
+
+        $data = $sosialMediaService->create($request->all());
+
+        Storage::disk()->assertExists($data->icon);
+
+        $files = count(Storage::allFiles('files'));
+        $this->assertTrue($files == 1);
+
+        $this->assertDatabaseCount('social_medias', 1);
+    }
+
+    /** @test */
+    public function buat_data_sosial_media_gambar_bernilai_bukan_file()
+    {
+        $sosialMediaService = app()->make(SosialMediaService::class);
+
+        $request = \Illuminate\Http\Request::create('/', 'POST', [
+            'name' => 'halo',
+            'url' => 'test.com',
+            'file' => 'tset',
+        ]);
+
+        request()->request = $request;
+
+        $data = $sosialMediaService->create($request->all());
+
+        Storage::disk()->assertExists($data->icon);
+
+        $files = count(Storage::allFiles('files'));
+        $this->assertTrue($files == 1);
+
         $this->assertDatabaseCount('social_medias', 1);
     }
 
@@ -83,19 +132,30 @@ class SosialMediaServiceTest extends TestCase
     {
         $this->expectException(QueryException::class);
 
-        $sosialMediaRepository = app()->make(SosialMediaRepository::class);
+        $sosialMediaService = app()->make(SosialMediaService::class);
 
-        $sosialMediaRepository->create([
-            'name' => 'tweter',
-            'icon' => 'image1.jpg',
-            'url' => 'test1.com',
+        $file = UploadedFile::fake()->image('avatar.jpg');
+        $file2 = UploadedFile::fake()->image('avatar.jpg');
+
+        $request = \Illuminate\Http\Request::create('/', 'POST', [
+            'name' => 'halo',
+            'url' => 'test.com',
+        ], files: [
+            'file' => $file,
         ]);
 
-        $sosialMediaRepository->create([
-            'name' => 'tweter',
-            'icon' => 'image2.jpg',
-            'url' => 'test2.com',
+        $request2 = \Illuminate\Http\Request::create('/', 'POST', [
+            'name' => 'halo',
+            'url' => 'test.com',
+        ], files: [
+            'file' => $file2,
         ]);
+
+        request()->request = $request;
+        $sosialMediaService->create($request->all());
+
+        request()->request = $request2;
+        $sosialMediaService->create($request2->all());
     }
 
     /** @test */
@@ -103,19 +163,28 @@ class SosialMediaServiceTest extends TestCase
     {
         $this->expectException(QueryException::class);
 
-        $sosialMediaRepository = app()->make(SosialMediaRepository::class);
+        $sosialMediaService = app()->make(SosialMediaService::class);
 
-        $sosialMediaRepository->create([
-            'name' => 'tweter1',
-            'icon' => 'image1.jpg',
-            'url' => 'test1.com',
+        $file = UploadedFile::fake()->image('avatar.jpg');
+
+        $request = \Illuminate\Http\Request::create('/', 'POST', [
+            'name' => 'halo',
+            'url' => 'test.com',
+        ], files: [
+            'file' => $file,
         ]);
 
-        $sosialMediaRepository->create([
-            'name' => 'tweter2',
-            'icon' => 'image1.jpg',
+        $request2 = \Illuminate\Http\Request::create('/', 'POST', [
+            'name' => 'halo2',
             'url' => 'test2.com',
+        ], files: [
+            'file' => $file,
         ]);
+
+        request()->request = $request;
+
+        $sosialMediaService->create($request->all());
+        $sosialMediaService->create($request2->all());
     }
 
     /** @test */
@@ -123,38 +192,63 @@ class SosialMediaServiceTest extends TestCase
     {
         $this->expectException(QueryException::class);
 
-        $sosialMediaRepository = app()->make(SosialMediaRepository::class);
+        $sosialMediaService = app()->make(SosialMediaService::class);
 
-        $sosialMediaRepository->create([
-            'name' => 'tweter1',
-            'icon' => 'image1.jpg',
-            'url' => 'test1.com',
+        $file = UploadedFile::fake()->image('avatar.jpg');
+        $file2 = UploadedFile::fake()->image('avatar.jpg');
+
+        $request = \Illuminate\Http\Request::create('/', 'POST', [
+            'name' => 'halo',
+            'url' => 'test.com',
+        ], files: [
+            'file' => $file,
         ]);
 
-        $sosialMediaRepository->create([
-            'name' => 'tweter2',
-            'icon' => 'image2.jpg',
-            'url' => 'test1.com',
+        $request2 = \Illuminate\Http\Request::create('/', 'POST', [
+            'name' => 'halo2',
+            'url' => 'test.com',
+        ], files: [
+            'file' => $file2,
         ]);
+
+        request()->request = $request;
+        $sosialMediaService->create($request->all());
+
+        request()->request = $request2;
+        $sosialMediaService->create($request2->all());
     }
 
     /** @test */
     public function update_data_sosial_media_dengan_id()
     {
-        $idSosialMedia = SocialMedia::factory(5)->create()->first()->id;
+        $sosialMedia = SocialMedia::factory(5)->create()->first();
 
-        $sosialMediaRepository = app()->make(SosialMediaRepository::class);
+        $sosialMediaService = app()->make(SosialMediaService::class);
 
-        $sosialMediaRepository->update($idSosialMedia, [
-            'name' => 'test',
-            'icon' => 'image.png',
-            'url' => 'trwe.com',
+        $file = UploadedFile::fake()->image('avatar.jpg');
+
+        $request = \Illuminate\Http\Request::create('/', 'POST', [
+            'name' => 'halo',
+            'url' => 'test.com',
+        ], files: [
+            'file' => $file,
         ]);
 
+        request()->request = $request;
+
+        $sosialMediaService->update($sosialMedia->id, $request->all());
+
+        $newSosialMedia = $sosialMediaService->findOrFail($sosialMedia->id);
+
+        Storage::assertMissing($sosialMedia->icon);
+
+        $files = count(Storage::allFiles('files'));
+        $this->assertTrue($files == 5);
+
         $this->assertDatabaseHas('social_medias', [
-            'name' => 'test',
-            'icon' => 'image.png',
-            'url' => 'trwe.com',
+            'name' => 'halo',
+            'icon' => $newSosialMedia->icon,
+            'url' => 'test.com',
         ]);
     }
 
