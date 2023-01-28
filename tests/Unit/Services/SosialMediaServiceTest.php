@@ -220,6 +220,58 @@ class SosialMediaServiceTest extends TestCase
     }
 
     /** @test */
+    public function buat_data_sosial_media_tanpa_nama_akan_eror()
+    {
+        $this->expectException(QueryException::class);
+
+        $sosialMediaService = app()->make(SosialMediaService::class);
+
+        $file = UploadedFile::fake()->image('avatar.jpg');
+
+        $request = Request::create('/', 'POST', [
+            'url' => 'test.com',
+        ], files: [
+            'file' => $file,
+        ]);
+
+        request()->request = $request;
+
+        $data = $sosialMediaService->create($request->all());
+
+        Storage::disk()->assertExists($data->icon);
+
+        $files = count(Storage::allFiles('files'));
+        $this->assertTrue($files == 1);
+
+        $this->assertDatabaseCount('social_medias', 1);
+    }
+
+    /** @test */
+    public function buat_data_sosial_media_tanpa_url_akan_eror()
+    {
+        $this->expectException(QueryException::class);
+
+        $sosialMediaService = app()->make(SosialMediaService::class);
+
+        $file = UploadedFile::fake()->image('avatar.jpg');
+
+        $request = Request::create('/', 'POST', [
+            'name' => 'halo',
+        ], files: [
+            'file' => $file,
+        ]);
+
+        request()->request = $request;
+
+        $data = $sosialMediaService->create($request->all());
+
+        Storage::disk()->assertExists($data->icon);
+
+        $files = count(Storage::allFiles('files'));
+        $this->assertTrue($files == 1);
+    }
+
+    /** @test */
     public function update_data_sosial_media_dengan_id()
     {
         $sosialMedia = SocialMedia::factory(5)->create()->first();

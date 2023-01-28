@@ -125,6 +125,20 @@ class SosialMediaRepositoryTest extends TestCase
         ]);
     }
 
+    /** @test */
+    public function buat_data_kurang_sosial_media_nama_tidak_data()
+    {
+        $this->expectException(QueryException::class);
+
+        $sosialMediaRepository = app()->make(SosialMediaRepository::class);
+
+        $sosialMediaRepository->create([
+            'icon' => 'image1.jpg',
+            'url' => 'test1.com',
+        ]);
+    }
+
+
     /** @test  */
     public function update_data_sosial_media_dengan_id()
     {
@@ -142,6 +156,32 @@ class SosialMediaRepositoryTest extends TestCase
             'name' => 'test',
             'icon' => 'image.png',
             'url' => 'trwe.com',
+        ]);
+    }
+
+    /** @test */
+    public function buat_data_kurang_sosial_media_icon_tidak_data()
+    {
+        $this->expectException(QueryException::class);
+
+        $sosialMediaRepository = app()->make(SosialMediaRepository::class);
+
+        $sosialMediaRepository->create([
+            'name' => 'tweter1',
+            'url' => 'test1.com',
+        ]);
+    }
+
+    /** @test */
+    public function buat_data_kurang_sosial_media_url_tidak_data()
+    {
+        $this->expectException(QueryException::class);
+
+        $sosialMediaRepository = app()->make(SosialMediaRepository::class);
+
+        $sosialMediaRepository->create([
+            'name' => 'tweter1',
+            'icon' => 'image1.jpg',
         ]);
     }
 
