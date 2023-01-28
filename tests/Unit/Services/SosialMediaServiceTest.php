@@ -45,7 +45,7 @@ class SosialMediaServiceTest extends TestCase
     }
 
     /** @test */
-    public function ambil_detail_data_sosial_media_dengan_id_tidak_ada()
+    public function ambil_detail_data_sosial_media_dengan_id_tidak_ada_akan_eror()
     {
         $this->expectException(ModelNotFoundException::class);
 
@@ -129,7 +129,7 @@ class SosialMediaServiceTest extends TestCase
     }
 
     /** @test */
-    public function buat_data_duplikat_sosial_media_nama_sama()
+    public function buat_data_duplikat_sosial_media_nama_sama_akan_eror()
     {
         $this->expectException(QueryException::class);
 
@@ -160,7 +160,7 @@ class SosialMediaServiceTest extends TestCase
     }
 
     /** @test */
-    public function buat_data_duplikat_sosial_media_icon_sama()
+    public function buat_data_duplikat_sosial_media_icon_sama_akan_eror()
     {
         $this->expectException(QueryException::class);
 
@@ -189,7 +189,7 @@ class SosialMediaServiceTest extends TestCase
     }
 
     /** @test */
-    public function buat_data_duplikat_sosial_media_url_sama()
+    public function buat_data_duplikat_sosial_media_url_sama_akan_eror()
     {
         $this->expectException(QueryException::class);
 
@@ -401,7 +401,7 @@ class SosialMediaServiceTest extends TestCase
     }
 
     /** @test */
-    public function delete_data_sosial_media_dengan_id_tidak_ada()
+    public function delete_data_sosial_media_dengan_id_tidak_ada_akan_eror()
     {
         $this->expectException(ModelNotFoundException::class);
 
