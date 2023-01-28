@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Services\Experience;
+namespace App\Services\Skill;
 
 use LaravelEasyRepository\Service;
-use App\Repositories\Experience\ExperienceRepository;
+use App\Repositories\Skill\SkillRepository;
 
-class ExperienceServiceImplement extends Service implements ExperienceService{
+class SkillServiceImplement extends Service implements SkillService{
 
      /**
      * don't change $this->mainRepository variable name
@@ -13,7 +13,7 @@ class ExperienceServiceImplement extends Service implements ExperienceService{
      */
      protected $mainRepository;
 
-    public function __construct(ExperienceRepository $mainRepository)
+    public function __construct(SkillRepository $mainRepository)
     {
       $this->mainRepository = $mainRepository;
     }
