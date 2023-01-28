@@ -41,7 +41,7 @@ class SosialMediaRepositoryTest extends TestCase
     }
 
     /** @test */
-    public function ambil_detail_data_sosial_media_dengan_id_tidak_ada()
+    public function ambil_detail_data_sosial_media_dengan_id_tidak_ada_akan_eror()
     {
         $this->expectException(ModelNotFoundException::class);
 
@@ -66,7 +66,7 @@ class SosialMediaRepositoryTest extends TestCase
     }
 
     /** @test */
-    public function buat_data_duplikat_sosial_media_nama_sama()
+    public function buat_data_duplikat_sosial_media_nama_sama_akan_eror()
     {
         $this->expectException(QueryException::class);
 
@@ -86,7 +86,7 @@ class SosialMediaRepositoryTest extends TestCase
     }
 
     /** @test */
-    public function buat_data_duplikat_sosial_media_icon_sama()
+    public function buat_data_duplikat_sosial_media_icon_sama_akan_eror()
     {
         $this->expectException(QueryException::class);
 
@@ -106,7 +106,7 @@ class SosialMediaRepositoryTest extends TestCase
     }
 
     /** @test */
-    public function buat_data_duplikat_sosial_media_url_sama()
+    public function buat_data_duplikat_sosial_media_url_sama_akan_eror()
     {
         $this->expectException(QueryException::class);
 
@@ -126,7 +126,7 @@ class SosialMediaRepositoryTest extends TestCase
     }
 
     /** @test */
-    public function buat_data_kurang_sosial_media_nama_tidak_data()
+    public function buat_data_kurang_sosial_media_nama_tidak_data_akan_eror()
     {
         $this->expectException(QueryException::class);
 
@@ -139,7 +139,7 @@ class SosialMediaRepositoryTest extends TestCase
     }
 
     /** @test */
-    public function buat_data_kurang_sosial_media_icon_tidak_data()
+    public function buat_data_kurang_sosial_media_icon_tidak_data_akan_eror()
     {
         $this->expectException(QueryException::class);
 
@@ -152,7 +152,7 @@ class SosialMediaRepositoryTest extends TestCase
     }
 
     /** @test */
-    public function buat_data_kurang_sosial_media_url_tidak_data()
+    public function buat_data_kurang_sosial_media_url_tidak_data_akan_eror()
     {
         $this->expectException(QueryException::class);
 
@@ -185,7 +185,7 @@ class SosialMediaRepositoryTest extends TestCase
     }
 
     /** @test  */
-    public function update_data_sosial_media_dengan_id_tidak_ada()
+    public function update_data_sosial_media_dengan_id_tidak_ada_akan_eror()
     {
         $this->expectException(ModelNotFoundException::class);
 
@@ -199,7 +199,7 @@ class SosialMediaRepositoryTest extends TestCase
     }
 
     /** @test  */
-    public function update_data_sosial_media_dengan_nama_sudak_ada()
+    public function update_data_sosial_media_dengan_nama_sudak_ada_akan_eror()
     {
         $this->expectException(QueryException::class);
 
@@ -219,7 +219,7 @@ class SosialMediaRepositoryTest extends TestCase
     }
 
     /** @test  */
-    public function update_data_sosial_media_dengan_icon_sudak_ada()
+    public function update_data_sosial_media_dengan_icon_sudak_ada_akan_eror()
     {
         $this->expectException(QueryException::class);
 
@@ -239,7 +239,7 @@ class SosialMediaRepositoryTest extends TestCase
     }
 
     /** @test  */
-    public function update_data_sosial_media_dengan_url_sudak_ada()
+    public function update_data_sosial_media_dengan_url_sudak_ada_akan_eror()
     {
         $this->expectException(QueryException::class);
 
@@ -271,7 +271,7 @@ class SosialMediaRepositoryTest extends TestCase
     }
 
     /** @test */
-    public function delete_data_sosial_media_dengan_id_tidak_ada()
+    public function delete_data_sosial_media_dengan_id_tidak_ada_akan_eror()
     {
         $this->expectException(ModelNotFoundException::class);
 
