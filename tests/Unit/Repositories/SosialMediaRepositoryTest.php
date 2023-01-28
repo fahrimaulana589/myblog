@@ -138,27 +138,6 @@ class SosialMediaRepositoryTest extends TestCase
         ]);
     }
 
-
-    /** @test  */
-    public function update_data_sosial_media_dengan_id()
-    {
-        $idSosialMedia = SocialMedia::factory(5)->create()->first()->id;
-
-        $sosialMediaRepository = app()->make(SosialMediaRepository::class);
-
-        $sosialMediaRepository->update($idSosialMedia, [
-            'name' => 'test',
-            'icon' => 'image.png',
-            'url' => 'trwe.com',
-        ]);
-
-        $this->assertDatabaseHas('social_medias', [
-            'name' => 'test',
-            'icon' => 'image.png',
-            'url' => 'trwe.com',
-        ]);
-    }
-
     /** @test */
     public function buat_data_kurang_sosial_media_icon_tidak_data()
     {
@@ -182,6 +161,26 @@ class SosialMediaRepositoryTest extends TestCase
         $sosialMediaRepository->create([
             'name' => 'tweter1',
             'icon' => 'image1.jpg',
+        ]);
+    }
+
+    /** @test  */
+    public function update_data_sosial_media_dengan_id()
+    {
+        $idSosialMedia = SocialMedia::factory(5)->create()->first()->id;
+
+        $sosialMediaRepository = app()->make(SosialMediaRepository::class);
+
+        $sosialMediaRepository->update($idSosialMedia, [
+            'name' => 'test',
+            'icon' => 'image.png',
+            'url' => 'trwe.com',
+        ]);
+
+        $this->assertDatabaseHas('social_medias', [
+            'name' => 'test',
+            'icon' => 'image.png',
+            'url' => 'trwe.com',
         ]);
     }
 
