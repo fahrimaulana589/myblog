@@ -198,6 +198,66 @@ class SosialMediaRepositoryTest extends TestCase
         ]);
     }
 
+    /** @test  */
+    public function update_data_sosial_media_dengan_nama_sudak_ada()
+    {
+        $this->expectException(QueryException::class);
+
+        $sosialMediaRepository = app()->make(SosialMediaRepository::class);
+
+        $data1 = SocialMedia::factory()->create([
+            'name' => 'test',
+            'icon' => 'image.png',
+            'url' => 'trwe.com',
+        ]);
+
+        $data2 = SocialMedia::factory()->create();
+
+        $sosialMediaRepository->update($data2->id, [
+            'name' => 'test'
+        ]);
+    }
+
+    /** @test  */
+    public function update_data_sosial_media_dengan_icon_sudak_ada()
+    {
+        $this->expectException(QueryException::class);
+
+        $sosialMediaRepository = app()->make(SosialMediaRepository::class);
+
+        $data1 = SocialMedia::factory()->create([
+            'name' => 'test',
+            'icon' => 'image.png',
+            'url' => 'trwe.com',
+        ]);
+
+        $data2 = SocialMedia::factory()->create();
+
+        $sosialMediaRepository->update($data2->id, [
+            'icon' => 'image.png',
+        ]);
+    }
+
+    /** @test  */
+    public function update_data_sosial_media_dengan_url_sudak_ada()
+    {
+        $this->expectException(QueryException::class);
+
+        $sosialMediaRepository = app()->make(SosialMediaRepository::class);
+
+        $data1 = SocialMedia::factory()->create([
+            'name' => 'test',
+            'icon' => 'image.png',
+            'url' => 'trwe.com',
+        ]);
+
+        $data2 = SocialMedia::factory()->create();
+
+        $sosialMediaRepository->update($data2->id, [
+             'url' => 'trwe.com',
+        ]);
+    }
+
     /** @test */
     public function delete_data_sosial_media_dengan_id()
     {
