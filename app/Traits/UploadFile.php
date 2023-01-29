@@ -10,11 +10,10 @@ trait UploadFile
     private function getPhoto()
     {
         if (request()->get('file') == null) {
-            return UploadedFile::fake()->image('avatar.jpg')->store('files');
+            return UploadedFile::fake()->image(fake()->uuid().'.jpg')->store('files');
         } elseif (!isset(request()->get('file')->name)) {
-            return UploadedFile::fake()->image('avatar.jpg')->store('files');
+            return UploadedFile::fake()->image(fake()->uuid().'.jpg')->store('files');
         }
-
         return request()->get('file')->store('files');
     }
 
