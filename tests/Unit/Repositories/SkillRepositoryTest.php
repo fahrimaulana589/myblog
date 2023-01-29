@@ -12,8 +12,7 @@ use Tests\TestCase;
 class SkillRepositoryTest extends TestCase
 {
 
-    /** @test */
-    public function ambil_semua_skill(){
+   public function test_ambil_semua_skill(){
         Skill::factory(5)->create();
 
         $skillRepository = app()->make(SkillRepository::class);
@@ -23,8 +22,7 @@ class SkillRepositoryTest extends TestCase
         $this->assertTrue($sskills->count() == 5);
     }
 
-    /** @test */
-    public function ambil_detail_skill_dengan_id(){
+   public function test_ambil_detail_skill_dengan_id(){
         $skills = Skill::factory(5)->create();
 
         $skillRepository = app()->make(SkillRepository::class);
@@ -34,8 +32,7 @@ class SkillRepositoryTest extends TestCase
         $this->assertTrue($skill->id == $skills->first()->id);
     }
 
-    /** @test */
-    public function ambil_detail_skill_dengan_id_tidak_ada(){
+    public function test_ambil_detail_skill_dengan_id_tidak_ada(){
         $this->expectException(ModelNotFoundException::class);
 
         Skill::factory(5)->create();
@@ -46,8 +43,7 @@ class SkillRepositoryTest extends TestCase
     }
 
 
-    /** @test  */
-    public function buat_data_skill()
+    public function test_buat_data_skill()
     {
         $skillRepository = app()->make(SkillRepository::class);
 
@@ -59,8 +55,7 @@ class SkillRepositoryTest extends TestCase
         $this->assertDatabaseCount("skills",1);
     }
 
-    /** @test  */
-    public function buat_data_skill_dengan_gambar_sama_akan_eror()
+     public function test_buat_data_skill_dengan_gambar_sama_akan_eror()
     {
         $this->expectException(QueryException::class);
 
@@ -79,8 +74,7 @@ class SkillRepositoryTest extends TestCase
         ]);
     }
 
-    /** @test  */
-    public function buat_data_skill_dengan_nama_sama_akan_eror()
+    public function test_buat_data_skill_dengan_nama_sama_akan_eror()
     {
         $this->expectException(QueryException::class);
 
@@ -99,8 +93,7 @@ class SkillRepositoryTest extends TestCase
         ]);
     }
 
-    /** @test  */
-    public function buat_data_skill_dengan_gambar_tidak_ada_akan_eror()
+    public function test_buat_data_skill_dengan_gambar_tidak_ada_akan_eror()
     {
         $this->expectException(QueryException::class);
 
@@ -111,8 +104,7 @@ class SkillRepositoryTest extends TestCase
         ]);
     }
 
-    /** @test  */
-    public function buat_data_skill_dengan_nama_tidak_ada_akan_eror()
+    public function test_buat_data_skill_dengan_nama_tidak_ada_akan_eror()
     {
         $this->expectException(QueryException::class);
 
@@ -123,8 +115,7 @@ class SkillRepositoryTest extends TestCase
         ]);
     }
 
-    /** @test  */
-    public function update_data_skill_dengan_id()
+    public function test_update_data_skill_dengan_id()
     {
         $idSkill = Skill::factory(5)->create()->first()->id;
 
@@ -139,8 +130,7 @@ class SkillRepositoryTest extends TestCase
         ]);
     }
 
-    /** @test  */
-    public function update_data_skill_dengan_id_tidak_ada_akan_eror()
+    public function test_update_data_skill_dengan_id_tidak_ada_akan_eror()
     {
         $this->expectException(ModelNotFoundException::class);
 
@@ -153,8 +143,7 @@ class SkillRepositoryTest extends TestCase
         ]);
     }
 
-    /** @test  */
-    public function update_data_skill_dengan_nama_sudah_ada_akan_eror()
+    public function test_update_data_skill_dengan_nama_sudah_ada_akan_eror()
     {
         $this->expectException(QueryException::class);
 
@@ -170,8 +159,7 @@ class SkillRepositoryTest extends TestCase
         ]);
     }
 
-    /** @test  */
-    public function update_data_skill_dengan_icon_sudah_ada_akan_eror()
+    public function test_update_data_skill_dengan_icon_sudah_ada_akan_eror()
     {
         $this->expectException(QueryException::class);
 
@@ -187,8 +175,7 @@ class SkillRepositoryTest extends TestCase
         ]);
     }
 
-    /** @test  */
-    public function delete_skill_dari_id()
+    public function test_delete_skill_dari_id()
     {
         $skill = Skill::factory()->create();
 
@@ -199,8 +186,7 @@ class SkillRepositoryTest extends TestCase
         $this->assertDatabaseCount('skills',0);
     }
 
-    /** @test  */
-    public function delete_skill_dari_id_tidak_ada_akan_eror()
+    public function test_delete_skill_dari_id_tidak_ada_akan_eror()
     {
         $this->expectException(ModelNotFoundException::class);
 
