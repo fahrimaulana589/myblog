@@ -41,6 +41,19 @@ class SkillServiceTest extends TestCase
         $this->assertTrue($skill->id == $idSkill);
     }
 
+    public function test_ambil_data_skill_dengan_id_tidak_ada_akan_eror()
+    {
+        $this->expectException(ModelNotFoundException::class);
+
+        $skillService = app()->make(SkillService::class);
+
+        $skills = Skill::factory(5)->create();
+
+        $idSkill = $skills->first()->id;
+
+        $skill = $skillService->findOrFail(1212);
+    }
+
     public function test_buat_data_skill()
     {
         $skillService = app()->make(SkillService::class);
@@ -54,7 +67,6 @@ class SkillServiceTest extends TestCase
         ]);
 
         request()->request = $request;
-
 
         $data = $skillService->create($request->all());
 
@@ -211,6 +223,32 @@ class SkillServiceTest extends TestCase
             'name' => 'halo',
             'icon' => $newSkill->icon,
         ]);
+    }
+
+    public function test_update_data_skill_dengan_nama_sama_akan_eror()
+    {
+        $this->expectException(QueryException::class);
+
+        Skill::factory()->create([
+            'name' => 'php'
+        ]);
+
+        $skill = Skill::factory()->create();
+
+        $skillService = app()->make(SkillService::class);
+
+        $file = UploadedFile::fake()->image('avatar.jpg');
+
+        $request = Request::create('/', 'POST', [
+            'name' => 'php',
+        ], files: [
+            'file' => $file,
+        ]);
+
+        request()->request = $request;
+
+        $skillService->update($skill->id, $request->all());
+
     }
 
     public function test_update_data_skill_dengan_id_tidak_ada()
