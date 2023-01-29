@@ -3,6 +3,7 @@
 namespace App\Services\SosialMedia;
 
 use App\Repositories\SosialMedia\SosialMediaRepository;
+use App\Traits\UploadFile;
 use Illuminate\Http\UploadedFile;
 use LaravelEasyRepository\Service;
 use Storage;
@@ -14,6 +15,7 @@ class SosialMediaServiceImplement extends Service implements SosialMediaService
      * because used in extends service class
      */
     protected $mainRepository;
+    use UploadFile;
 
     public function __construct(SosialMediaRepository $mainRepository)
     {
@@ -29,20 +31,9 @@ class SosialMediaServiceImplement extends Service implements SosialMediaService
         return $this->mainRepository->create($data);
     }
 
-    private function getPhoto()
-    {
-        if (request()->get('file') == null) {
-            return UploadedFile::fake()->image('avatar.jpg')->store('files');
-        } elseif (!isset(request()->get('file')->name)) {
-            return UploadedFile::fake()->image('avatar.jpg')->store('files');
-        }
-
-        return request()->get('file')->store('files');
-    }
-
     public function update($id, array $data)
     {
-        $sosialMediaOld = $this->findOrFail($id);
+        $sosialMediaOld = $this->mainRepository->findOrFail($id);
         $image = $this->updatePhoto($sosialMediaOld);
 
         $data['icon'] = $image['url'];
@@ -58,33 +49,6 @@ class SosialMediaServiceImplement extends Service implements SosialMediaService
         }
 
         return $result;
-    }
-
-    private function updatePhoto($sosialMediaOld)
-    {
-        if (request()->get('file') == null) {
-            return [
-                'status' => 'file upload kosong',
-                'code' => 1,
-                'url' => $sosialMediaOld->icon
-            ];
-        } elseif (!isset(request()->get('file')->name)) {
-            return [
-                'status' => 'file upload bukan file',
-                'code' => 2,
-                'url' => $sosialMediaOld->icon
-            ];
-        }
-        return [
-            'status' => 'file upload baru',
-            'code' => 3,
-            'url' => request()->get('file')->store('files')
-        ];
-    }
-
-    private function deletePhoto($sosialMediaFile)
-    {
-        return Storage::delete($sosialMediaFile);
     }
 
     public function delete($id)
