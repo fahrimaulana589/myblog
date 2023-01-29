@@ -321,6 +321,65 @@ class SosialMediaServiceTest extends TestCase
     }
 
     /** @test */
+    public function update_data_sosial_media_dengan_nama_sama_akan_eror()
+    {
+        $this->expectException(QueryException::class);
+
+        SocialMedia::factory()->create([
+            'name' => 'halo',
+            'url' => 'test.com',
+        ]);
+
+        $sosialMedia = SocialMedia::factory()->create();
+
+        $sosialMediaService = app()->make(SosialMediaService::class);
+
+        $file = UploadedFile::fake()->image('avatar.jpg');
+
+        $request = Request::create('/', 'POST', [
+            'name' => 'halo',
+            'url' => 'test.com2',
+        ], files: [
+            'file' => $file,
+        ]);
+
+        request()->request = $request;
+
+        $sosialMediaService->update($sosialMedia->id, $request->all());
+
+    }
+
+    /** @test */
+    public function update_data_sosial_media_dengan_url_sama_akan_eror()
+    {
+        $this->expectException(QueryException::class);
+
+        SocialMedia::factory()->create([
+            'name' => 'halo',
+            'url' => 'test.com',
+        ]);
+
+        $sosialMedia = SocialMedia::factory()->create();
+
+        $sosialMediaService = app()->make(SosialMediaService::class);
+
+        $file = UploadedFile::fake()->image('avatar.jpg');
+
+        $request = Request::create('/', 'POST', [
+            'name' => 'halo2',
+            'url' => 'test.com',
+        ], files: [
+            'file' => $file,
+        ]);
+
+        request()->request = $request;
+
+        $sosialMediaService->update($sosialMedia->id, $request->all());
+
+    }
+
+
+    /** @test */
     public function update_data_sosial_media_dengan_gambar()
     {
         $sosialMedia = SocialMedia::factory(5)->create()->first();
