@@ -8,7 +8,6 @@ class PortofolioObserver
 {
     public function created(Portofolio $portofolio)
     {
-
     }
 
     public function updated(Portofolio $portofolio)

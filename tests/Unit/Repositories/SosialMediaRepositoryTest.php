@@ -214,7 +214,7 @@ class SosialMediaRepositoryTest extends TestCase
         $data2 = SocialMedia::factory()->create();
 
         $sosialMediaRepository->update($data2->id, [
-            'name' => 'test'
+            'name' => 'test',
         ]);
     }
 
@@ -254,7 +254,7 @@ class SosialMediaRepositoryTest extends TestCase
         $data2 = SocialMedia::factory()->create();
 
         $sosialMediaRepository->update($data2->id, [
-             'url' => 'trwe.com',
+            'url' => 'trwe.com',
         ]);
     }
 

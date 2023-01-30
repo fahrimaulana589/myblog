@@ -3,13 +3,11 @@
 namespace App\Observers;
 
 use App\Models\Blog;
-use App\Models\Read;
 
 class BlogObserver
 {
     public function created(Blog $blog)
     {
-
     }
 
     public function updated(Blog $blog)
@@ -28,5 +26,4 @@ class BlogObserver
     public function forceDeleted(Blog $blog)
     {
     }
-
 }

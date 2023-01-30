@@ -2,7 +2,6 @@
 
 namespace App\Services\Experience;
 
-use App\Repositories\Education\EducationRepository;
 use App\Repositories\Experience\ExperienceRepository;
 use LaravelEasyRepository\Service;
 

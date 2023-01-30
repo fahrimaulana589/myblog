@@ -4,9 +4,7 @@ namespace App\Services\SosialMedia;
 
 use App\Repositories\SosialMedia\SosialMediaRepository;
 use App\Traits\UploadFile;
-use Illuminate\Http\UploadedFile;
 use LaravelEasyRepository\Service;
-use Storage;
 
 class SosialMediaServiceImplement extends Service implements SosialMediaService
 {
@@ -15,6 +13,7 @@ class SosialMediaServiceImplement extends Service implements SosialMediaService
      * because used in extends service class
      */
     protected $mainRepository;
+
     use UploadFile;
 
     public function __construct(SosialMediaRepository $mainRepository)
@@ -41,7 +40,7 @@ class SosialMediaServiceImplement extends Service implements SosialMediaService
         $result = $this->mainRepository->update($id, $data);
 
         if ($result) {
-            if($image['code'] == 3){
+            if ($image['code'] == 3) {
                 $this->deletePhoto($sosialMediaOld->icon);
             }
         } else {
@@ -62,5 +61,4 @@ class SosialMediaServiceImplement extends Service implements SosialMediaService
 
         return $result;
     }
-
 }

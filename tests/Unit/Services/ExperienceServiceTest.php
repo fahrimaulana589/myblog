@@ -113,7 +113,6 @@ class ExperienceServiceTest extends TestCase
         request()->request = $request;
 
         $data = $experienceService->create($request->all());
-
     }
 
     /** @test */
@@ -131,7 +130,6 @@ class ExperienceServiceTest extends TestCase
         request()->request = $request;
 
         $experienceService->create($request->all());
-
     }
 
     /** @test */
@@ -149,7 +147,6 @@ class ExperienceServiceTest extends TestCase
         request()->request = $request;
 
         $experienceService->create($request->all());
-
     }
 
     /** @test */
@@ -196,7 +193,7 @@ class ExperienceServiceTest extends TestCase
         $this->expectException(QueryException::class);
 
         Experience::factory()->create([
-            'name' => "popo"
+            'name' => 'popo',
         ]);
         $experience = Experience::factory()->create();
 

@@ -3,10 +3,7 @@
 namespace Tests\Unit\Services;
 
 use App\Models\Skill;
-use App\Models\SocialMedia;
-use App\Repositories\SosialMedia\SosialMediaRepository;
 use App\Services\Skill\SkillService;
-use App\Services\SosialMedia\SosialMediaService;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -62,8 +59,8 @@ class SkillServiceTest extends TestCase
 
         $request = Request::create('/', 'POST', [
             'name' => 'halo',
-        ],files: [
-            'file' => $file
+        ], files: [
+            'file' => $file,
         ]);
 
         request()->request = $request;
@@ -132,7 +129,7 @@ class SkillServiceTest extends TestCase
 
         $request = Request::create('/', 'POST', [
             'name' => 'halo',
-         ], files: [
+        ], files: [
             'file' => $file,
         ]);
 
@@ -230,7 +227,7 @@ class SkillServiceTest extends TestCase
         $this->expectException(QueryException::class);
 
         Skill::factory()->create([
-            'name' => 'php'
+            'name' => 'php',
         ]);
 
         $skill = Skill::factory()->create();
@@ -248,7 +245,6 @@ class SkillServiceTest extends TestCase
         request()->request = $request;
 
         $skillService->update($skill->id, $request->all());
-
     }
 
     public function test_update_data_skill_dengan_id_tidak_ada()

@@ -10,7 +10,8 @@ use Tests\TestCase;
 
 class ExperienceRepositoryTest extends TestCase
 {
-    public function test_ambil_semua_experience(){
+    public function test_ambil_semua_experience()
+    {
         Experience::factory(5)->create();
 
         $experienceRepository = app()->make(ExperienceRepository::class);
@@ -20,7 +21,8 @@ class ExperienceRepositoryTest extends TestCase
         $this->assertTrue($experiences->count() == 5);
     }
 
-    public function test_ambil_detail_experience_dengan_id(){
+    public function test_ambil_detail_experience_dengan_id()
+    {
         $experiences = Experience::factory(5)->create();
 
         $experienceRepository = app()->make(ExperienceRepository::class);
@@ -30,7 +32,8 @@ class ExperienceRepositoryTest extends TestCase
         $this->assertTrue($experience->id == $experiences->first()->id);
     }
 
-    public function test_ambil_detail_experience_dengan_id_tidak_ada(){
+    public function test_ambil_detail_experience_dengan_id_tidak_ada()
+    {
         $this->expectException(ModelNotFoundException::class);
 
         Experience::factory(5)->create();
@@ -39,7 +42,6 @@ class ExperienceRepositoryTest extends TestCase
 
         $experienceRepository->findOrFail(121);
     }
-
 
     public function test_buat_data_experience()
     {
@@ -51,7 +53,7 @@ class ExperienceRepositoryTest extends TestCase
             'date' => '2020-06-01 00:00:00',
         ]);
 
-        $this->assertDatabaseCount("experiences",1);
+        $this->assertDatabaseCount('experiences', 1);
     }
 
     public function test_buat_data_experience_dengan_nama_sama_akan_eror()
@@ -117,13 +119,13 @@ class ExperienceRepositoryTest extends TestCase
 
         $experienceRepository = app()->make(ExperienceRepository::class);
 
-        $experience = $experienceRepository->update($idExperience,[
+        $experience = $experienceRepository->update($idExperience, [
             'name' => 'test',
             'summary' => 'test2',
             'date' => '2020-06-01 00:00:00',
         ]);
 
-        $this->assertDatabaseHas('experiences',[
+        $this->assertDatabaseHas('experiences', [
             'name' => 'test',
             'summary' => 'test2',
             'date' => '2020-06-01 00:00:00',
@@ -138,7 +140,7 @@ class ExperienceRepositoryTest extends TestCase
 
         $experienceRepository = app()->make(ExperienceRepository::class);
 
-        $experience = $experienceRepository->update(121,[
+        $experience = $experienceRepository->update(121, [
             'name' => 'test',
             'summary' => 'test2',
             'date' => 'test2',
@@ -158,7 +160,7 @@ class ExperienceRepositoryTest extends TestCase
 
         $experienceRepository = app()->make(ExperienceRepository::class);
 
-        $experience = $experienceRepository->update($data2->id,[
+        $experience = $experienceRepository->update($data2->id, [
             'name' => 'test',
             'summary' => 'test2',
             'date' => 'test2',
@@ -170,14 +172,14 @@ class ExperienceRepositoryTest extends TestCase
         $this->expectException(QueryException::class);
 
         $data1 = Experience::factory()->create([
-            'icon' => 'teasst.jpg'
+            'icon' => 'teasst.jpg',
         ]);
         $data2 = Experience::factory()->create();
 
         $experienceRepository = app()->make(ExperienceRepository::class);
 
-        $experience = $experienceRepository->update($data2->id,[
-            'icon' => 'teasst.jpg'
+        $experience = $experienceRepository->update($data2->id, [
+            'icon' => 'teasst.jpg',
         ]);
     }
 
@@ -189,7 +191,7 @@ class ExperienceRepositoryTest extends TestCase
 
         $experienceRepository->delete($experience->id);
 
-        $this->assertDatabaseCount('experiences',0);
+        $this->assertDatabaseCount('experiences', 0);
     }
 
     public function test_delete_experience_dari_id_tidak_ada_akan_eror()
@@ -200,6 +202,6 @@ class ExperienceRepositoryTest extends TestCase
 
         $experienceRepository->delete(121212);
 
-        $this->assertDatabaseCount('experiences',0);
+        $this->assertDatabaseCount('experiences', 0);
     }
 }

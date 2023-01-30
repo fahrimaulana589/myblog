@@ -8,8 +8,6 @@ use App\Services\Education\EducationService;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
-use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class EducationServiceTest extends TestCase
@@ -115,7 +113,6 @@ class EducationServiceTest extends TestCase
         request()->request = $request;
 
         $data = $educationService->create($request->all());
-
     }
 
     /** @test */
@@ -133,7 +130,6 @@ class EducationServiceTest extends TestCase
         request()->request = $request;
 
         $educationService->create($request->all());
-
     }
 
     /** @test */
@@ -151,7 +147,6 @@ class EducationServiceTest extends TestCase
         request()->request = $request;
 
         $educationService->create($request->all());
-
     }
 
     /** @test */
@@ -198,7 +193,7 @@ class EducationServiceTest extends TestCase
         $this->expectException(QueryException::class);
 
         Education::factory()->create([
-            'name' => "popo"
+            'name' => 'popo',
         ]);
         $education = Education::factory()->create();
 

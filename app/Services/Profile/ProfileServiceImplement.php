@@ -52,7 +52,7 @@ class ProfileServiceImplement extends Service implements ProfileService
 
         if (request()->get('file') == null) {
             return $oldPath;
-        } else if (! isset(request()->get('file')->name)) {
+        } elseif (! isset(request()->get('file')->name)) {
             return $oldPath;
         }
 

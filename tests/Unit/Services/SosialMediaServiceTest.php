@@ -79,7 +79,6 @@ class SosialMediaServiceTest extends TestCase
         $files = count(Storage::allFiles('files'));
         $this->assertTrue($files == 1);
 
-
         $this->assertDatabaseCount('social_medias', 1);
     }
 
@@ -346,7 +345,6 @@ class SosialMediaServiceTest extends TestCase
         request()->request = $request;
 
         $sosialMediaService->update($sosialMedia->id, $request->all());
-
     }
 
     /** @test */
@@ -375,9 +373,7 @@ class SosialMediaServiceTest extends TestCase
         request()->request = $request;
 
         $sosialMediaService->update($sosialMedia->id, $request->all());
-
     }
-
 
     /** @test */
     public function update_data_sosial_media_dengan_gambar()

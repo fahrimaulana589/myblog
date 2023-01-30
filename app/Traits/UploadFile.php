@@ -11,9 +11,10 @@ trait UploadFile
     {
         if (request()->get('file') == null) {
             return UploadedFile::fake()->image(fake()->uuid().'.jpg')->store('files');
-        } elseif (!isset(request()->get('file')->name)) {
+        } elseif (! isset(request()->get('file')->name)) {
             return UploadedFile::fake()->image(fake()->uuid().'.jpg')->store('files');
         }
+
         return request()->get('file')->store('files');
     }
 
@@ -23,19 +24,20 @@ trait UploadFile
             return [
                 'status' => 'file upload kosong',
                 'code' => 1,
-                'url' => $sosialMediaOld->icon
+                'url' => $sosialMediaOld->icon,
             ];
-        } elseif (!isset(request()->get('file')->name)) {
+        } elseif (! isset(request()->get('file')->name)) {
             return [
                 'status' => 'file upload bukan file',
                 'code' => 2,
-                'url' => $sosialMediaOld->icon
+                'url' => $sosialMediaOld->icon,
             ];
         }
+
         return [
             'status' => 'file upload baru',
             'code' => 3,
-            'url' => request()->get('file')->store('files')
+            'url' => request()->get('file')->store('files'),
         ];
     }
 

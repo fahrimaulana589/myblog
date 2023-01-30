@@ -4,7 +4,7 @@ namespace App\Repositories\Experience;
 
 use LaravelEasyRepository\Repository;
 
-interface ExperienceRepository extends Repository{
-
+interface ExperienceRepository extends Repository
+{
     // Write something awesome :)
 }

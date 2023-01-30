@@ -33,6 +33,4 @@ class Blog extends Model
     {
         return $this->morphOne(Read::class, 'readable');
     }
-
-
 }

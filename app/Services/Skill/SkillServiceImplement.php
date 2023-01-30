@@ -2,18 +2,18 @@
 
 namespace App\Services\Skill;
 
+use App\Repositories\Skill\SkillRepository;
 use App\Traits\UploadFile;
 use LaravelEasyRepository\Service;
-use App\Repositories\Skill\SkillRepository;
 
 class SkillServiceImplement extends Service implements SkillService
 {
-
     /**
      * don't change $this->mainRepository variable name
      * because used in extends service class
      */
     protected $mainRepository;
+
     use UploadFile;
 
     public function __construct(SkillRepository $mainRepository)
@@ -59,5 +59,4 @@ class SkillServiceImplement extends Service implements SkillService
 
         return $result;
     }
-
 }

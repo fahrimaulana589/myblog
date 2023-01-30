@@ -10,7 +10,8 @@ use Tests\TestCase;
 
 class EducationRepositoryTest extends TestCase
 {
-    public function test_ambil_semua_education(){
+    public function test_ambil_semua_education()
+    {
         Education::factory(5)->create();
 
         $educationRepository = app()->make(EducationRepository::class);
@@ -20,7 +21,8 @@ class EducationRepositoryTest extends TestCase
         $this->assertTrue($educations->count() == 5);
     }
 
-    public function test_ambil_detail_education_dengan_id(){
+    public function test_ambil_detail_education_dengan_id()
+    {
         $educations = Education::factory(5)->create();
 
         $educationRepository = app()->make(EducationRepository::class);
@@ -30,7 +32,8 @@ class EducationRepositoryTest extends TestCase
         $this->assertTrue($education->id == $educations->first()->id);
     }
 
-    public function test_ambil_detail_education_dengan_id_tidak_ada(){
+    public function test_ambil_detail_education_dengan_id_tidak_ada()
+    {
         $this->expectException(ModelNotFoundException::class);
 
         Education::factory(5)->create();
@@ -39,7 +42,6 @@ class EducationRepositoryTest extends TestCase
 
         $educationRepository->findOrFail(121);
     }
-
 
     public function test_buat_data_education()
     {
@@ -51,7 +53,7 @@ class EducationRepositoryTest extends TestCase
             'date' => '2020-06-01 00:00:00',
         ]);
 
-        $this->assertDatabaseCount("educations",1);
+        $this->assertDatabaseCount('educations', 1);
     }
 
     public function test_buat_data_education_dengan_nama_sama_akan_eror()
@@ -117,13 +119,13 @@ class EducationRepositoryTest extends TestCase
 
         $educationRepository = app()->make(EducationRepository::class);
 
-        $education = $educationRepository->update($idEducation,[
+        $education = $educationRepository->update($idEducation, [
             'name' => 'test',
             'summary' => 'test2',
             'date' => '2020-06-01 00:00:00',
         ]);
 
-        $this->assertDatabaseHas('educations',[
+        $this->assertDatabaseHas('educations', [
             'name' => 'test',
             'summary' => 'test2',
             'date' => '2020-06-01 00:00:00',
@@ -138,7 +140,7 @@ class EducationRepositoryTest extends TestCase
 
         $educationRepository = app()->make(EducationRepository::class);
 
-        $education = $educationRepository->update(121,[
+        $education = $educationRepository->update(121, [
             'name' => 'test',
             'summary' => 'test2',
             'date' => 'test2',
@@ -158,7 +160,7 @@ class EducationRepositoryTest extends TestCase
 
         $educationRepository = app()->make(EducationRepository::class);
 
-        $education = $educationRepository->update($data2->id,[
+        $education = $educationRepository->update($data2->id, [
             'name' => 'test',
             'summary' => 'test2',
             'date' => 'test2',
@@ -170,14 +172,14 @@ class EducationRepositoryTest extends TestCase
         $this->expectException(QueryException::class);
 
         $data1 = Education::factory()->create([
-            'icon' => 'teasst.jpg'
+            'icon' => 'teasst.jpg',
         ]);
         $data2 = Education::factory()->create();
 
         $educationRepository = app()->make(EducationRepository::class);
 
-        $education = $educationRepository->update($data2->id,[
-            'icon' => 'teasst.jpg'
+        $education = $educationRepository->update($data2->id, [
+            'icon' => 'teasst.jpg',
         ]);
     }
 
@@ -189,7 +191,7 @@ class EducationRepositoryTest extends TestCase
 
         $educationRepository->delete($education->id);
 
-        $this->assertDatabaseCount('educations',0);
+        $this->assertDatabaseCount('educations', 0);
     }
 
     public function test_delete_education_dari_id_tidak_ada_akan_eror()
@@ -200,6 +202,6 @@ class EducationRepositoryTest extends TestCase
 
         $educationRepository->delete(121212);
 
-        $this->assertDatabaseCount('educations',0);
+        $this->assertDatabaseCount('educations', 0);
     }
 }
