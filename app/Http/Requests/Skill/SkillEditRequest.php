@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Skill;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SkillAddRequest extends FormRequest
+class SkillEditRequest extends SkillRequest
 {
     public function rules(): array
     {
+        $id = request()->get('id');
+
         return [
             'file' => [
                 'file',
@@ -17,13 +19,9 @@ class SkillAddRequest extends FormRequest
             'name' => [
                 'required',
                 'alpha_num',
-                'unique:skills,name',
+                'unique:skills,name,'.$id,
             ],
         ];
     }
 
-    public function authorize(): bool
-    {
-        return true;
-    }
 }

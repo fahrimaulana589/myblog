@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Http\Requests;
 
-use App\Http\Requests\SkillAddRequest;
+use App\Http\Requests\Skill\SkillAddRequest;
 use App\Models\Skill;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
