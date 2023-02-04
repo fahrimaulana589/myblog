@@ -14,6 +14,7 @@ class AppRequest extends FormRequest
             'unique' => 'Untuk :attribute Harus Data yang belum pernah Ada',
             'file' => 'Untuk :attribute Harus Data File',
             'image' => 'Untuk :attribute Harus Data File Berformat Gambar',
+            'String' => 'Untuk :attribute Harus Data Teks'
         ];
     }
 

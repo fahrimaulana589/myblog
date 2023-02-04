@@ -12,7 +12,7 @@ class SkillRequest extends AppRequest
     {
         return [
           'name' => 'Nama Skill',
-          'icon' => 'Icon Skill',
+          'file' => 'Icon Skill',
         ];
     }
 }

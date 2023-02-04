@@ -2,11 +2,12 @@
 
 namespace App\Http\Requests\Profile;
 
+use App\Http\Requests\AppRequest;
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class ProfileUpdateRequest extends FormRequest
+class ProfileUpdateRequest extends AppRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -16,8 +17,22 @@ class ProfileUpdateRequest extends FormRequest
     public function rules()
     {
         return [
+            'file' =>['file','image'],
             'name' => ['string', 'max:255'],
-            'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
+            'summary' => ['string'],
+            'slogan' => ['string'],
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name' => 'Nama Profile',
+            'file' => 'Gambar Profile',
+            'summary' => 'Summary Profile',
+            'slogan' => 'Slogan Profile',
+        ];
+    }
+
+
 }
