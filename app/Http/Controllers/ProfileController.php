@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
+use App\Http\Requests\Profile\ProfileUpdateRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -25,7 +25,7 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      *
-     * @param  \App\Http\Requests\ProfileUpdateRequest  $request
+     * @param  \App\Http\Requests\Profile\ProfileUpdateRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(ProfileUpdateRequest $request)
