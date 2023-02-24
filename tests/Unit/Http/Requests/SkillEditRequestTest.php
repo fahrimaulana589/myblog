@@ -120,4 +120,26 @@ class SkillEditRequestTest extends TestCase
 
         $this->assertTrue(true);
     }
+
+    public function test_validasi_gagal_icon_bukan_image()
+    {
+        $this->expectException(ValidationException::class);
+
+        $skill = Skill::factory()->create();
+
+        $file = UploadedFile::fake()->create('avatar.pdf', 1000, 'application/pdf');
+
+        $request = Request::create('/', 'POST', [
+            'id' => $skill->id,
+            'name' => 'php',
+        ], files: [
+            'file' => $file,
+        ]);
+
+        request()->request = $request;
+
+        $skillRequest = new SkillEditRequest();
+
+        validator($request->all(), $skillRequest->rules())->validated();
+    }
 }
