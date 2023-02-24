@@ -13,7 +13,7 @@ class EducationTest extends TestCase
     public function educations_database_has_expected_collumn()
     {
         $result = Schema::hasColumns('educations', [
-            'name', 'summary', 'date',
+            'name', 'summary', 'awal','akhir',
         ]);
 
         $this->assertTrue($result);
@@ -34,12 +34,22 @@ class EducationTest extends TestCase
     }
 
     /** @test  */
-    public function education_database_date_is_date()
+    public function education_database_awal_is_date()
     {
         $this->expectException(QueryException::class);
 
         Education::factory(1)->create([
-            'date' => '1-2-2000',
+            'awal' => '1-2-2000',
+        ]);
+    }
+
+    /** @test  */
+    public function education_database_akhir_is_date()
+    {
+        $this->expectException(QueryException::class);
+
+        Education::factory(1)->create([
+            'akhir' => '1-2-2000',
         ]);
     }
 }

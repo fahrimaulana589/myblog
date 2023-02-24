@@ -62,7 +62,8 @@ class EducationServiceTest extends TestCase
         $request = Request::create('/', 'POST', [
             'name' => 'test',
             'summary' => 'test2',
-            'date' => '2020-06-01 00:00:00',
+            'awal' => '2020-06-01 00:00:00',
+            'akhir' => '2020-06-01 00:00:00',
         ]);
 
         request()->request = $request;
@@ -82,13 +83,15 @@ class EducationServiceTest extends TestCase
         $request = Request::create('/', 'POST', [
             'name' => 'test',
             'summary' => 'test',
-            'date' => '2020-06-01 00:00:01',
+            'awal' => '2020-06-01 00:00:00',
+            'akhir' => '2020-06-01 00:00:00',
         ]);
 
         $request2 = Request::create('/', 'POST', [
             'name' => 'test',
             'summary' => 'test2',
-            'date' => '2020-06-01 00:00:02',
+            'awal' => '2020-06-01 00:00:00',
+            'akhir' => '2020-06-01 00:00:00',
         ]);
 
         request()->request = $request;
@@ -107,7 +110,8 @@ class EducationServiceTest extends TestCase
 
         $request = Request::create('/', 'POST', [
             'summary' => 'test2',
-            'date' => '2020-06-01 00:00:02',
+            'awal' => '2020-06-01 00:00:00',
+            'akhir' => '2020-06-01 00:00:00',
         ]);
 
         request()->request = $request;
@@ -124,7 +128,8 @@ class EducationServiceTest extends TestCase
 
         $request = Request::create('/', 'POST', [
             'name' => 'test',
-            'date' => '2020-06-01 00:00:02',
+            'awal' => '2020-06-01 00:00:00',
+            'akhir' => '2020-06-01 00:00:00',
         ]);
 
         request()->request = $request;
@@ -133,7 +138,7 @@ class EducationServiceTest extends TestCase
     }
 
     /** @test */
-    public function buat_data_education_tanpa_date_akan_eror()
+    public function buat_data_education_tanpa_awal_akan_eror()
     {
         $this->expectException(QueryException::class);
 
@@ -142,6 +147,25 @@ class EducationServiceTest extends TestCase
         $request = Request::create('/', 'POST', [
             'name' => 'test',
             'summary' => 'test2',
+            'akhir' => '2020-06-01 00:00:00',
+        ]);
+
+        request()->request = $request;
+
+        $educationService->create($request->all());
+    }
+
+    /** @test */
+    public function buat_data_education_tanpa_akhir_akan_eror()
+    {
+        $this->expectException(QueryException::class);
+
+        $educationService = app()->make(EducationService::class);
+
+        $request = Request::create('/', 'POST', [
+            'name' => 'test',
+            'summary' => 'test2',
+            'awal' => '2020-06-01 00:00:00',
         ]);
 
         request()->request = $request;
@@ -159,7 +183,8 @@ class EducationServiceTest extends TestCase
         $request = Request::create('/', 'POST', [
             'name' => 'test',
             'summary' => 'test2',
-            'date' => '2020-06-01',
+            'awal' => '2020-06-01 00:00:00',
+            'akhir' => '2020-06-01 00:00:00',
         ]);
 
         request()->request = $request;
@@ -169,7 +194,8 @@ class EducationServiceTest extends TestCase
         $this->assertDatabaseHas('educations', [
             'name' => 'test',
             'summary' => 'test2',
-            'date' => '2020-06-01',
+            'awal' => '2020-06-01 00:00:00',
+            'akhir' => '2020-06-01 00:00:00',
         ]);
     }
 
@@ -183,7 +209,8 @@ class EducationServiceTest extends TestCase
         $educationRepository->update(6, [
             'name' => 'test',
             'summary' => 'test2',
-            'date' => '2020-06-01 00:00:02',
+            'awal' => '2020-06-01 00:00:00',
+            'akhir' => '2020-06-01 00:00:00',
         ]);
     }
 
@@ -202,7 +229,8 @@ class EducationServiceTest extends TestCase
         $request = Request::create('/', 'POST', [
             'name' => 'popo',
             'summary' => 'test2',
-            'date' => '2020-06-01',
+            'awal' => '2020-06-01 00:00:00',
+            'akhir' => '2020-06-01 00:00:00',
         ]);
 
         request()->request = $request;

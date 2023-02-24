@@ -50,7 +50,8 @@ class EducationRepositoryTest extends TestCase
         $education = $educationRepository->create([
             'name' => 'test',
             'summary' => 'test',
-            'date' => '2020-06-01 00:00:00',
+            'awal' => '2020-06-01 00:00:00',
+            'akhir' => '2020-06-01 00:00:00',
         ]);
 
         $this->assertDatabaseCount('educations', 1);
@@ -62,18 +63,18 @@ class EducationRepositoryTest extends TestCase
 
         $educationRepository = app()->make(EducationRepository::class);
 
-        $nama = 'php';
-
         $education = $educationRepository->create([
             'name' => 'test',
             'summary' => 'test',
-            'date' => 'test',
+            'awal' => '2020-06-01 00:00:00',
+            'akhir' => '2020-06-01 00:00:00',
         ]);
 
         $education = $educationRepository->create([
             'name' => 'test',
             'summary' => 'test2',
-            'date' => 'test2',
+            'awal' => '2020-06-01 00:00:00',
+            'akhir' => '2020-06-01 00:00:00',
         ]);
     }
 
@@ -85,7 +86,8 @@ class EducationRepositoryTest extends TestCase
 
         $education = $educationRepository->create([
             'summary' => 'test2',
-            'date' => 'test2',
+            'awal' => '2020-06-01 00:00:00',
+            'akhir' => '2020-06-01 00:00:00',
         ]);
     }
 
@@ -97,11 +99,12 @@ class EducationRepositoryTest extends TestCase
 
         $education = $educationRepository->create([
             'name' => 'test',
-            'date' => 'test2',
+            'awal' => '2020-06-01 00:00:00',
+            'akhir' => '2020-06-01 00:00:00',
         ]);
     }
 
-    public function test_buat_data_education_dengan_date_tidak_ada_akan_eror()
+    public function test_buat_data_education_dengan_awal_tidak_ada_akan_eror()
     {
         $this->expectException(QueryException::class);
 
@@ -110,6 +113,20 @@ class EducationRepositoryTest extends TestCase
         $education = $educationRepository->create([
             'name' => 'test',
             'summary' => 'test2',
+            'akhir' => '2020-06-01 00:00:00',
+        ]);
+    }
+
+    public function test_buat_data_education_dengan_akhir_tidak_ada_akan_eror()
+    {
+        $this->expectException(QueryException::class);
+
+        $educationRepository = app()->make(EducationRepository::class);
+
+        $education = $educationRepository->create([
+            'name' => 'test',
+            'summary' => 'test2',
+            'awal' => '2020-06-01 00:00:00',
         ]);
     }
 
@@ -122,13 +139,15 @@ class EducationRepositoryTest extends TestCase
         $education = $educationRepository->update($idEducation, [
             'name' => 'test',
             'summary' => 'test2',
-            'date' => '2020-06-01 00:00:00',
+            'awal' => '2020-06-01 00:00:00',
+            'akhir' => '2020-06-01 00:00:00',
         ]);
 
         $this->assertDatabaseHas('educations', [
             'name' => 'test',
             'summary' => 'test2',
-            'date' => '2020-06-01 00:00:00',
+            'awal' => '2020-06-01 00:00:00',
+            'akhir' => '2020-06-01 00:00:00',
         ]);
     }
 
@@ -143,7 +162,8 @@ class EducationRepositoryTest extends TestCase
         $education = $educationRepository->update(121, [
             'name' => 'test',
             'summary' => 'test2',
-            'date' => 'test2',
+            'awal' => '2020-06-01 00:00:00',
+            'akhir' => '2020-06-01 00:00:00',
         ]);
     }
 
@@ -154,7 +174,8 @@ class EducationRepositoryTest extends TestCase
         $data1 = Education::factory()->create([
             'name' => 'test',
             'summary' => 'test2',
-            'date' => 'test2',
+            'awal' => '2020-06-01 00:00:00',
+            'akhir' => '2020-06-01 00:00:00',
         ]);
         $data2 = Education::factory()->create();
 
@@ -163,7 +184,8 @@ class EducationRepositoryTest extends TestCase
         $education = $educationRepository->update($data2->id, [
             'name' => 'test',
             'summary' => 'test2',
-            'date' => 'test2',
+            'awal' => '2020-06-01 00:00:00',
+            'akhir' => '2020-06-01 00:00:00',
         ]);
     }
 

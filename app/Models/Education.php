@@ -12,6 +12,6 @@ class Education extends Model
     protected $table = 'educations';
 
     protected $fillable = [
-        'name', 'summary', 'date',
+        'name', 'summary', 'awal','akhir',
     ];
 }

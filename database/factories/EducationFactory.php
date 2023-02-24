@@ -14,7 +14,8 @@ class EducationFactory extends Factory
         return [
             'name' => fake()->unique()->name(),
             'summary' => fake()->text(200),
-            'date' => fake()->date(),
+            'awal' => fake()->date(),
+            'akhir' => fake()->date(),
         ];
     }
 }
