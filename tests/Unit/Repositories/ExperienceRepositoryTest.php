@@ -50,7 +50,8 @@ class ExperienceRepositoryTest extends TestCase
         $experience = $experienceRepository->create([
             'name' => 'test',
             'summary' => 'test',
-            'date' => '2020-06-01 00:00:00',
+            'awal' => '2020-06-01 00:00:00',
+            'akhir' => '2020-06-01 00:00:00',
         ]);
 
         $this->assertDatabaseCount('experiences', 1);
@@ -67,13 +68,15 @@ class ExperienceRepositoryTest extends TestCase
         $experience = $experienceRepository->create([
             'name' => 'test',
             'summary' => 'test',
-            'date' => 'test',
+            'awal' => '2020-06-01 00:00:00',
+            'akhir' => '2020-06-01 00:00:00',
         ]);
 
         $experience = $experienceRepository->create([
             'name' => 'test',
             'summary' => 'test2',
-            'date' => 'test2',
+            'awal' => '2020-06-01 00:00:00',
+            'akhir' => '2020-06-01 00:00:00',
         ]);
     }
 
@@ -85,7 +88,8 @@ class ExperienceRepositoryTest extends TestCase
 
         $experience = $experienceRepository->create([
             'summary' => 'test2',
-            'date' => 'test2',
+            'awal' => '2020-06-01 00:00:00',
+            'akhir' => '2020-06-01 00:00:00',
         ]);
     }
 
@@ -97,11 +101,12 @@ class ExperienceRepositoryTest extends TestCase
 
         $experience = $experienceRepository->create([
             'name' => 'test',
-            'date' => 'test2',
+            'awal' => '2020-06-01 00:00:00',
+            'akhir' => '2020-06-01 00:00:00',
         ]);
     }
 
-    public function test_buat_data_experience_dengan_date_tidak_ada_akan_eror()
+    public function test_buat_data_experience_dengan_awal_tidak_ada_akan_eror()
     {
         $this->expectException(QueryException::class);
 
@@ -110,6 +115,19 @@ class ExperienceRepositoryTest extends TestCase
         $experience = $experienceRepository->create([
             'name' => 'test',
             'summary' => 'test2',
+            'akhir' => '2020-06-01 00:00:00',
+        ]);
+    }
+    public function test_buat_data_experience_dengan_akhir_tidak_ada_akan_eror()
+    {
+        $this->expectException(QueryException::class);
+
+        $experienceRepository = app()->make(ExperienceRepository::class);
+
+        $experience = $experienceRepository->create([
+            'name' => 'test',
+            'summary' => 'test2',
+            'awal' => '2020-06-01 00:00:00',
         ]);
     }
 
@@ -122,13 +140,15 @@ class ExperienceRepositoryTest extends TestCase
         $experience = $experienceRepository->update($idExperience, [
             'name' => 'test',
             'summary' => 'test2',
-            'date' => '2020-06-01 00:00:00',
+            'awal' => '2020-06-01 00:00:00',
+            'akhir' => '2020-06-01 00:00:00',
         ]);
 
         $this->assertDatabaseHas('experiences', [
             'name' => 'test',
             'summary' => 'test2',
-            'date' => '2020-06-01 00:00:00',
+            'awal' => '2020-06-01 00:00:00',
+            'akhir' => '2020-06-01 00:00:00',
         ]);
     }
 
@@ -143,7 +163,8 @@ class ExperienceRepositoryTest extends TestCase
         $experience = $experienceRepository->update(121, [
             'name' => 'test',
             'summary' => 'test2',
-            'date' => 'test2',
+            'awal' => '2020-06-01 00:00:00',
+            'akhir' => '2020-06-01 00:00:00',
         ]);
     }
 
@@ -154,7 +175,8 @@ class ExperienceRepositoryTest extends TestCase
         $data1 = Experience::factory()->create([
             'name' => 'test',
             'summary' => 'test2',
-            'date' => 'test2',
+            'awal' => '2020-06-01 00:00:00',
+            'akhir' => '2020-06-01 00:00:00',
         ]);
         $data2 = Experience::factory()->create();
 
@@ -163,7 +185,8 @@ class ExperienceRepositoryTest extends TestCase
         $experience = $experienceRepository->update($data2->id, [
             'name' => 'test',
             'summary' => 'test2',
-            'date' => 'test2',
+            'awal' => '2020-06-01 00:00:00',
+            'akhir' => '2020-06-01 00:00:00',
         ]);
     }
 

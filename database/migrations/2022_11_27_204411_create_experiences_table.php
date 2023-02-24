@@ -13,7 +13,8 @@ return new class extends Migration
 
             $table->string('name')->unique();
             $table->text('summary');
-            $table->date('date');
+            $table->date('awal');
+            $table->date('akhir');
 
             $table->timestamps();
         });

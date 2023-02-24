@@ -12,6 +12,6 @@ class Experience extends Model
     protected $table = 'experiences';
 
     protected $fillable = [
-        'name', 'summary', 'date',
+        'name', 'summary', 'awal','akhir',
     ];
 }

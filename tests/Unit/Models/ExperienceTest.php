@@ -13,7 +13,7 @@ class ExperienceTest extends TestCase
     public function experience_database_has_expected_collumn()
     {
         $result = Schema::hasColumns('experiences', [
-            'name', 'summary', 'date',
+            'name', 'summary', 'awal','akhir',
         ]);
 
         $this->assertTrue($result);
@@ -34,12 +34,21 @@ class ExperienceTest extends TestCase
     }
 
     /** @test */
-    public function experience_database_date_collumn_is_date()
+    public function experience_database_awal_collumn_is_date()
     {
         $this->expectException(QueryException::class);
 
         Experience::factory()->create([
-            'date' => 'freelance s',
+            'awal' => 'freelance s',
+        ]);
+    }
+    /** @test */
+    public function experience_database_akhir_collumn_is_date()
+    {
+        $this->expectException(QueryException::class);
+
+        Experience::factory()->create([
+            'akhir' => 'freelance s',
         ]);
     }
 }

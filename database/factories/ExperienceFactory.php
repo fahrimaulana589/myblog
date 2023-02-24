@@ -15,7 +15,8 @@ class ExperienceFactory extends Factory
         return [
             'name' => fake()->unique()->name(),
             'summary' => fake()->text(),
-            'date' => Carbon::now(),
+            'awal' => Carbon::now(),
+            'akhir' => Carbon::now(),
         ];
     }
 }
