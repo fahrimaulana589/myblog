@@ -12,7 +12,7 @@ class SkillAddRequest extends SkillRequest
             'file' => [
                 'file',
                 'image',
-                'nullable',
+                'required',
             ],
             'name' => [
                 'required',
