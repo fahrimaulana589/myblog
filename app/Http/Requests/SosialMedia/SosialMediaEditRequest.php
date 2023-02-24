@@ -4,7 +4,7 @@ namespace App\Http\Requests\SosialMedia;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SosialMediaEditRequest extends FormRequest
+class SosialMediaEditRequest extends SosialMediaRequest
 {
     /**
      * Get the validation rules that apply to the request.
