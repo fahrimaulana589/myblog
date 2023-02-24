@@ -24,7 +24,7 @@ class ProfileUpdateRequest extends AppRequest
         ];
     }
 
-    public function messages()
+    public function attributes()
     {
         return [
             'name' => 'Nama Profile',
@@ -33,6 +33,4 @@ class ProfileUpdateRequest extends AppRequest
             'slogan' => 'Slogan Profile',
         ];
     }
-
-
 }
