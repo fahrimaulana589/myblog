@@ -16,7 +16,7 @@ class SkillAddRequest extends SkillRequest
             ],
             'name' => [
                 'required',
-                'alpha_num',
+                'string',
                 'unique:skills,name',
             ],
         ];

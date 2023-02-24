@@ -23,7 +23,7 @@ class SosialMediaEditRequest extends SosialMediaRequest
             ],
             'name' => [
                 'required',
-                'alpha_num',
+                'string',
                 'unique:social_medias,name,'.$id,
             ],
             'url' => [

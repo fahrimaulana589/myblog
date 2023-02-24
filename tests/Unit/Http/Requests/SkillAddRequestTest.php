@@ -26,7 +26,7 @@ class SkillAddRequestTest extends TestCase
 
         $skillRequest = new SkillAddRequest();
 
-        $validated = validator($request->all(), $skillRequest->rules())->validated();
+        $request->validate( $skillRequest->rules());
 
         $this->assertTrue(true);
     }
@@ -47,7 +47,7 @@ class SkillAddRequestTest extends TestCase
 
         $skillRequest = new SkillAddRequest();
 
-        $validated = validator($request->all(), $skillRequest->rules())->validated();
+        $request->validate( $skillRequest->rules());
 
         $this->assertTrue(true);
     }
@@ -72,7 +72,7 @@ class SkillAddRequestTest extends TestCase
 
         $skillRequest = new SkillAddRequest();
 
-        validator($request->all(), $skillRequest->rules())->validated();
+        $request->validate( $skillRequest->rules());
     }
 
     public function test_validasi_gagal_icon_tidak_ada()
@@ -108,6 +108,6 @@ class SkillAddRequestTest extends TestCase
 
         $skillRequest = new SkillAddRequest();
 
-        validator($request->all(), $skillRequest->rules())->validated();
+        $request->validate( $skillRequest->rules());
     }
 }

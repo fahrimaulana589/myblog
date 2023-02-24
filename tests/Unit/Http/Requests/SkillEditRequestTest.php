@@ -140,6 +140,6 @@ class SkillEditRequestTest extends TestCase
 
         $skillRequest = new SkillEditRequest();
 
-        validator($request->all(), $skillRequest->rules())->validated();
+        $request->validate( $skillRequest->rules());
     }
 }

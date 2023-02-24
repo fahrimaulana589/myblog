@@ -18,7 +18,7 @@ class SkillEditRequest extends SkillRequest
             ],
             'name' => [
                 'required',
-                'alpha_num',
+                'string',
                 'unique:skills,name,'.$id,
             ],
         ];

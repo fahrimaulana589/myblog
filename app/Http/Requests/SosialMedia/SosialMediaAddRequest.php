@@ -21,7 +21,7 @@ class SosialMediaAddRequest extends SosialMediaRequest
             ],
             'name' => [
                 'required',
-                'alpha_num',
+                'string',
                 'unique:social_medias,name',
             ],
             'url' => [

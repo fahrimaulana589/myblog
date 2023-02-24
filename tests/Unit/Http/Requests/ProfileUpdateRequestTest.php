@@ -27,7 +27,7 @@ class ProfileUpdateRequestTest extends TestCase
 
         $skillRequest = new ProfileUpdateRequest();
 
-        $validated = validator($request->all(), $skillRequest->rules())->validated();
+        $request->validate( $skillRequest->rules());
 
         $this->assertTrue(true);
     }
@@ -50,7 +50,7 @@ class ProfileUpdateRequestTest extends TestCase
 
         $skillRequest = new ProfileUpdateRequest();
 
-        $validated = validator($request->all(), $skillRequest->rules())->validated();
+        $request->validate( $skillRequest->rules());
 
         $this->assertTrue(true);
     }

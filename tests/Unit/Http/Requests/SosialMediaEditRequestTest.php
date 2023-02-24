@@ -35,7 +35,7 @@ class SosialMediaEditRequestTest extends TestCase
 
         $skillRequest = new SosialMediaEditRequest();
 
-        $validated = validator($request->all(), $skillRequest->rules())->validated();
+        $request->validate( $skillRequest->rules());
 
         $this->assertTrue(true);
     }
@@ -56,7 +56,7 @@ class SosialMediaEditRequestTest extends TestCase
 
         $skillRequest = new SosialMediaEditRequest();
 
-        $validated = validator($request->all(), $skillRequest->rules())->validated();
+        $request->validate( $skillRequest->rules());
 
         $this->assertTrue(true);
     }
@@ -81,7 +81,7 @@ class SosialMediaEditRequestTest extends TestCase
 
         $skillRequest = new SosialMediaEditRequest();
 
-        $validated = validator($request->all(), $skillRequest->rules())->validated();
+        $request->validate( $skillRequest->rules());
 
         $this->assertTrue(true);
     }
@@ -106,7 +106,7 @@ class SosialMediaEditRequestTest extends TestCase
 
         $skillRequest = new SosialMediaEditRequest();
 
-        $validated = validator($request->all(), $skillRequest->rules())->validated();
+        $request->validate( $skillRequest->rules());
 
         $this->assertTrue(true);
     }
@@ -131,7 +131,7 @@ class SosialMediaEditRequestTest extends TestCase
 
         $skillRequest = new SosialMediaEditRequest();
 
-        $validated = validator($request->all(), $skillRequest->rules())->validated();
+        $request->validate( $skillRequest->rules());
 
         $this->assertTrue(true);
     }
@@ -160,7 +160,7 @@ class SosialMediaEditRequestTest extends TestCase
 
         $skillRequest = new SosialMediaEditRequest();
 
-        $validated = validator($request->all(), $skillRequest->rules())->validated();
+        $request->validate( $skillRequest->rules());
 
         $this->assertTrue(true);
     }
@@ -185,7 +185,7 @@ class SosialMediaEditRequestTest extends TestCase
 
         $skillRequest = new SosialMediaEditRequest();
 
-        $validated = validator($request->all(), $skillRequest->rules())->validated();
+        $request->validate( $skillRequest->rules());
 
         $this->assertTrue(true);
     }
@@ -214,7 +214,7 @@ class SosialMediaEditRequestTest extends TestCase
 
         $skillRequest = new SosialMediaEditRequest();
 
-        $validated = validator($request->all(), $skillRequest->rules())->validated();
+        $request->validate( $skillRequest->rules());
 
         $this->assertTrue(true);
     }
@@ -240,7 +240,7 @@ class SosialMediaEditRequestTest extends TestCase
 
         $skillRequest = new SosialMediaEditRequest();
 
-        $validated = validator($request->all(), $skillRequest->rules())->validated();
+        $request->validate( $skillRequest->rules());
 
         $this->assertTrue(true);
     }
