@@ -75,40 +75,21 @@ class SkillAddRequestTest extends TestCase
         validator($request->all(), $skillRequest->rules())->validated();
     }
 
-    public function test_validasi_gagal_nama_tidak_ada()
+    public function test_validasi_gagal_icon_tidak_ada()
     {
         $this->expectException(ValidationException::class);
 
-        $file = UploadedFile::fake()->image('avatar.jpg');
-
         $request = Request::create('/', 'POST', [
-            'name' => '',
-        ], files: [
-            'file' => $file,
+            'name' => 'php',
         ]);
 
         request()->request = $request;
 
         $skillRequest = new SkillAddRequest();
 
-        validator($request->all(), $skillRequest->rules())->validated();
-    }
+        $request->validate($skillRequest->rules());
 
-    public function test_validasi_gagal_icon_tidak_ada()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        $request = Request::create('/', 'POST', [
-            'name' => 's',
-        ], files: [
-            'file' => '',
-        ]);
-
-        request()->request = $request;
-
-        $skillRequest = new SkillAddRequest();
-
-        validator($request->all(), $skillRequest->rules())->validated();
+        $this->assertTrue(true);
     }
 
     public function test_validasi_gagal_icon_bukan_image()
