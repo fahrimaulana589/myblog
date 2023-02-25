@@ -1,13 +1,12 @@
 <?php
 
-namespace Tests\Unit\Http\Requests;
+namespace Http\Requests\Skill;
 
 use App\Http\Requests\Skill\SkillAddRequest;
 use App\Models\Skill;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Validation\ValidationException;
-use InvalidArgumentException;
 use Tests\TestCase;
 
 class SkillAddRequestTest extends TestCase

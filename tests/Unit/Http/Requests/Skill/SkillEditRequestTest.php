@@ -1,8 +1,7 @@
 <?php
 
-namespace Tests\Unit\Http\Requests;
+namespace Http\Requests\Skill;
 
-use App\Http\Requests\Skill\SkillAddRequest;
 use App\Http\Requests\Skill\SkillEditRequest;
 use App\Models\Skill;
 use Illuminate\Http\Request;

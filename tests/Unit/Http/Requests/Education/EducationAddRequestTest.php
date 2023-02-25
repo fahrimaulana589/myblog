@@ -1,15 +1,14 @@
 <?php
 
-namespace Tests\Unit\Http\Requests;
+namespace Http\Requests\Education;
 
 use App\Http\Requests\Education\EducationAddRequest;
-use App\Http\Requests\Education\EducationEditRequest;
 use App\Models\Education;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Tests\TestCase;
 
-class EducationEditRequestTest extends TestCase
+class EducationAddRequestTest extends TestCase
 {
     /**
      * A basic unit test example.
@@ -18,10 +17,7 @@ class EducationEditRequestTest extends TestCase
      */
     public function test_validasi_sukses()
     {
-        $education = Education::factory()->create();
-
         $request = Request::create('/','POST',[
-            'id' => $education->id,
             'name' => 'SD',
             'summary' => 'Sdssssssssssss s gfg',
             'awal' => '2020-06-01 00:00:00',
@@ -30,30 +26,7 @@ class EducationEditRequestTest extends TestCase
 
         request()->request = $request;
 
-
-        $educationrequest = new EducationEditRequest();
-        $request->validate($educationrequest->rules());
-
-        $this->assertTrue(true);
-    }
-
-    public function test_validasi_sukses_nama_sama_seperti_sebelumnya()
-    {
-        $education = Education::factory()->create([
-            'name' => 'SD'
-        ]);
-
-        $request = Request::create('/','POST',[
-            'id' => $education->id,
-            'name' => 'SD',
-            'summary' => 'Sdssssssssssss s gfg',
-            'awal' => '2020-06-01 00:00:00',
-            'akhir' => '2020-06-01 00:00:00',
-        ]);
-
-        request()->request = $request;
-
-        $educationrequest = new EducationEditRequest();
+        $educationrequest = new EducationAddRequest();
 
         $request->validate($educationrequest->rules());
 
@@ -73,8 +46,8 @@ class EducationEditRequestTest extends TestCase
 
         request()->request = $request;
 
+        $educationrequest = new EducationAddRequest();
 
-        $educationrequest = new EducationEditRequest();
         $request->validate($educationrequest->rules());
 
         $this->assertTrue(true);
@@ -85,7 +58,7 @@ class EducationEditRequestTest extends TestCase
         $this->expectException(ValidationException::class);
 
         Education::factory()->create([
-            'name' => 'fahri'
+           'name' => 'fahri'
         ]);
 
         $request = Request::create('/','POST',[
@@ -97,8 +70,8 @@ class EducationEditRequestTest extends TestCase
 
         request()->request = $request;
 
+        $educationrequest = new EducationAddRequest();
 
-        $educationrequest = new EducationEditRequest();
         $request->validate($educationrequest->rules());
 
         $this->assertTrue(true);
@@ -116,8 +89,8 @@ class EducationEditRequestTest extends TestCase
 
         request()->request = $request;
 
+        $educationrequest = new EducationAddRequest();
 
-        $educationrequest = new EducationEditRequest();
         $request->validate($educationrequest->rules());
 
         $this->assertTrue(true);
@@ -135,8 +108,8 @@ class EducationEditRequestTest extends TestCase
 
         request()->request = $request;
 
+        $educationrequest = new EducationAddRequest();
 
-        $educationrequest = new EducationEditRequest();
         $request->validate($educationrequest->rules());
 
         $this->assertTrue(true);
@@ -154,8 +127,8 @@ class EducationEditRequestTest extends TestCase
 
         request()->request = $request;
 
+        $educationrequest = new EducationAddRequest();
 
-        $educationrequest = new EducationEditRequest();
         $request->validate($educationrequest->rules());
 
         $this->assertTrue(true);

@@ -1,9 +1,8 @@
 <?php
 
-namespace Tests\Unit\Http\Requests;
+namespace Http\Requests\Profile;
 
 use App\Http\Requests\Profile\ProfileUpdateRequest;
-use App\Http\Requests\Skill\SkillAddRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Validation\ValidationException;

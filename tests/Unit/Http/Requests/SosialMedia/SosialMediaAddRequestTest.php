@@ -1,8 +1,7 @@
 <?php
 
-namespace Tests\Unit\Http\Requests;
+namespace Http\Requests\SosialMedia;
 
-use App\Http\Requests\Skill\SkillAddRequest;
 use App\Http\Requests\SosialMedia\SosialMediaAddRequest;
 use App\Models\SocialMedia;
 use Illuminate\Http\Request;
