@@ -9,6 +9,22 @@ class ServiceEditRequest extends ServiceRequest
 
     public function rules()
     {
+        $id = request()->get('id');
 
+        return [
+            'name' => [
+                'required',
+                'string',
+                'unique:services,name,'.$id
+            ],
+            'file'=>[
+                'file',
+                'image',
+            ],
+            'summary' => [
+                'required',
+                'string',
+            ],
+        ];
     }
 }
