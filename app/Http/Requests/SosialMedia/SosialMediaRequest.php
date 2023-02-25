@@ -10,7 +10,7 @@ class SosialMediaRequest extends AppRequest
     public function attributes()
     {
         return [
-            'icon' => 'Icon Sosial Media',
+            'file' => 'Icon Sosial Media',
             'name' => 'Nama Sosial Media',
             'url' => 'Url Sosial Media',
         ];
