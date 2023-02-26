@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\CurriculumVitae;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Http\UploadedFile;
 
 class CurriculumVitaeFactory extends Factory
 {
@@ -12,7 +13,7 @@ class CurriculumVitaeFactory extends Factory
     public function definition(): array
     {
         return [
-            'photo' => fake()->unique()->imageUrl(),
+            'photo' => UploadedFile::fake()->image('avatar.jpg')->store('files'),
             'name' => fake()->unique()->name(),
             'summary' => fake()->text(),
             'file' => fake()->unique()->imageUrl(),
