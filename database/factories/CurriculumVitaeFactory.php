@@ -16,7 +16,7 @@ class CurriculumVitaeFactory extends Factory
             'photo' => UploadedFile::fake()->image('avatar.jpg')->store('files'),
             'name' => fake()->unique()->name(),
             'summary' => fake()->text(),
-            'file' => fake()->unique()->imageUrl(),
+            'file' => UploadedFile::fake()->image('avatar.jpg')->store('files'),
         ];
     }
 }

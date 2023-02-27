@@ -42,18 +42,20 @@ class CurriculumVitaeRepositoryTest extends TestCase
     }
 
     /** @test  */
-    public function update_data_curriculumvitae_dengan_gambar()
+    public function update_data_curriculumvitae_dengan_file()
     {
-        Profile::factory()->create(['id' => $this->default_id]);
+        CurriculumVitae::factory()->create(['id' => $this->default_id]);
 
         $curriculumvitae_service = app()->make(CurriculumVitaeService::class);
 
         $file = UploadedFile::fake()->image('avatar.jpg');
+        $file2 = UploadedFile::fake()->create('file.pdf',1000,'pdf');
 
         $request = Request::create('/', 'POST', [
             'name' => 'fahri',
         ], files: [
-            'file' => $file,
+            'file_1' => $file,
+            'file_2' => $file2,
         ]);
 
         request()->request = $request;
@@ -61,8 +63,10 @@ class CurriculumVitaeRepositoryTest extends TestCase
         $curriculumvitae_service->change($request->all());
 
         $path = $curriculumvitae_service->view()->photo;
+        $path2 = $curriculumvitae_service->view()->file;
 
         Storage::disk()->assertExists($path);
+        Storage::disk()->assertExists($path2);
 
         $this->assertDatabaseHas('curriculum_vitaes', [
             'name' => 'fahri',
@@ -70,9 +74,9 @@ class CurriculumVitaeRepositoryTest extends TestCase
     }
 
     /** @test  */
-    public function update_data_curriculumvitae_dengan_gambar_tidak_ada()
+    public function update_data_curriculumvitae_dengan_file_tidak_ada()
     {
-        $curriculumvitaeOld = Profile::factory()->create(['id' => $this->default_id]);
+        $curriculumvitaeOld = CurriculumVitae::factory()->create(['id' => $this->default_id]);
 
         $curriculumvitae_service = app()->make(CurriculumVitaeService::class);
 
@@ -96,7 +100,7 @@ class CurriculumVitaeRepositoryTest extends TestCase
     /** @test  */
     public function update_data_curriculumvitae_dengan_gambar_yang_bernilai_bukan_file()
     {
-        $curriculumvitaeOld = Profile::factory()->create(['id' => $this->default_id]);
+        $curriculumvitaeOld = CurriculumVitae::factory()->create(['id' => $this->default_id]);
 
         $curriculumvitae_service = app()->make(CurriculumVitaeService::class);
 

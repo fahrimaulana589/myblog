@@ -15,7 +15,8 @@ class AppRequest extends FormRequest
             'file' => 'Untuk :attribute Harus Data File',
             'image' => 'Untuk :attribute Harus Data File Berformat Gambar',
             'String' => 'Untuk :attribute Harus Data Teks',
-            'url' => 'Untuk :attribute Harus menggunakan format url'
+            'url' => 'Untuk :attribute Harus menggunakan format url',
+            'mimes' => 'File Tidak Sesui'
         ];
     }
 

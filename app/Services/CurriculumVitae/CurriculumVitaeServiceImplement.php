@@ -31,9 +31,11 @@ class CurriculumVitaeServiceImplement extends Service implements CurriculumVitae
     {
         $this->isExist();
 
-        $path = $this->photo();
+        $path_photo = $this->file('file_1');
+        $path_file = $this->file('file_2');
 
-        $data['photo'] = $path;
+        $data['photo'] = $path_photo;
+        $data['file'] = $path_photo;
 
         return $this->mainRepository->change($data);
     }
@@ -47,18 +49,18 @@ class CurriculumVitaeServiceImplement extends Service implements CurriculumVitae
         }
     }
 
-    private function photo()
+    private function file($index)
     {
         $oldPath = $this->mainRepository->view()->photo;
 
-        if (request()->get('file') == null) {
+        if (request()->get($index) == null) {
             return $oldPath;
-        } elseif (! isset(request()->get('file')->name)) {
+        } elseif (! isset(request()->get($index)->name)) {
             return $oldPath;
         }
 
         Storage::delete($oldPath);
 
-        return request()->get('file')->store('files');
+        return request()->get($index)->store('files');
     }
 }
