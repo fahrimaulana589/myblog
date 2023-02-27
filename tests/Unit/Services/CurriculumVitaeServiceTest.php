@@ -11,7 +11,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
-class CurriculumVitaeRepositoryTest extends TestCase
+class CurriculumVitaeServiceTest extends TestCase
 {
     public $default_id = 1;
 
