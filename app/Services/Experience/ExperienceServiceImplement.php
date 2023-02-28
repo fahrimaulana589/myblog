@@ -18,5 +18,19 @@ class ExperienceServiceImplement extends Service implements ExperienceService
         $this->mainRepository = $mainRepository;
     }
 
-    // Define your custom methods :)
+    public function update($id, array $data)
+    {
+        $this->mainRepository->findOrFail($id);
+        $result = $this->mainRepository->update($id, $data);
+
+        return $result;
+    }
+
+    public function delete($id)
+    {
+        $this->mainRepository->findOrFail($id);
+        $result = $this->mainRepository->delete($id);
+
+        return $result;
+    }
 }
