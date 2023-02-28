@@ -8,14 +8,16 @@ use Illuminate\Support\Facades\DB;
 class not_exist implements Rule
 {
     public $table;
+    public $column;
     /**
      * Create a new rule instance.
      *
      * @return void
      */
-    public function __construct($table)
+    public function __construct($table,$column)
     {
         $this->table = $table;
+        $this->column = $column;
     }
 
     /**
@@ -27,7 +29,7 @@ class not_exist implements Rule
      */
     public function passes($attribute, $value)
     {
-        return DB::table($this->table)->where('id','=',$value)->count() == 0;
+        return DB::table($this->table)->where($this->column,'=',$value)->count() == 0;
     }
 
     /**
@@ -37,6 +39,6 @@ class not_exist implements Rule
      */
     public function message()
     {
-        return 'The validation error message.';
+        return 'id tidak dapat dihapus';
     }
 }
