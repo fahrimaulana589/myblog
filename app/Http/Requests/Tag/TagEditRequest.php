@@ -20,6 +20,10 @@ class TagEditRequest extends TagRequest
                 'unique:tags,name,'.$id,
                 'required',
                 'string'
+            ],
+            'id' => [
+                'required',
+                'exists:tags,id'
             ]
         ];
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Tag;
 
+use App\Rules\not_exist;
 use Illuminate\Foundation\Http\FormRequest;
 
 class TagDeleteRequest extends TagRequest
@@ -17,7 +18,8 @@ class TagDeleteRequest extends TagRequest
             'id' => [
                 'required',
                 'numeric',
-                'exists:'
+                'exists:tags,id',
+                new not_exist('blog_tag','tag_id')
             ]
         ];
     }
