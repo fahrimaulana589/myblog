@@ -14,7 +14,28 @@ class BlogAddRequest extends BlogRequest
     public function rules()
     {
         return [
-            //
+            'name' => [
+                'required',
+                'unique:blogs,name'
+            ],
+            'file' => [
+                'file',
+                'image',
+                'required'
+            ],
+            'content' => [
+                'required',
+                'string'
+            ],
+            'date' => [
+                'date',
+                'required'
+            ],
+            'comment' => [
+                'required',
+                'string',
+                'unique:blogs,comment'
+            ],
         ];
     }
 }
