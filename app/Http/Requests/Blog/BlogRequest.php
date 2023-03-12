@@ -11,7 +11,7 @@ class BlogRequest extends AppRequest
     {
         return [
             'name' => 'nama blog',
-            'image' => 'gambar blog',
+            'file' => 'gambar blog',
             'content' => 'isi blog',
             'date' => 'tanggal blog',
             'comment' => 'comment blog',
