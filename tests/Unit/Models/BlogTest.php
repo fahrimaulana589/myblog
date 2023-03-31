@@ -150,7 +150,8 @@ class BlogTest extends TestCase
     /** @test */
     public function blog_memiliki_banyak_tags()
     {
-        Tag::factory(5)->create()->first();
+        $tag_1 = Tag::factory(5)->create()->first();
+        $tag_2 = Tag::factory(5)->create()->first();
 
         $category = Category::factory()->create();
 
@@ -158,7 +159,7 @@ class BlogTest extends TestCase
             'category_id' => $category->id,
         ]);
 
-        $blog->tags()->attach([2, 4]);
+        $blog->tags()->attach([$tag_1->id, $tag_2->id]);
 
         $tags = Blog::find($blog->id)->tags();
 
